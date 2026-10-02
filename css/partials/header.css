@@ -1,0 +1,6 @@
+header{
+    display:flex;
+    background:red;
+    flex-flow: row-wrap;
+    justify-content:center;
+}

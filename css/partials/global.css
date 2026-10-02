@@ -1,10 +1,13 @@
+*{
+    box-sizing:border-box;
+}
+
 body {
     background: pink;
 }
 
-header{
-    display:flex;
-    background:red;
-    flex-flow: row-wrap;
-    justify-content:center;
+#wrapper{
+    background:white;
+    min-height:100vh;
+    min-width:80vw;
 }
