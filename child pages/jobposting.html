@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Higher - Job Postings</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/images/HireHigher.png">
+</head>
+<body>
+
+    <header>
+        <a href="/index.html">
+            <h1>Hire Higher</h1>
+        </a>
+    </header>
+
+    <main>
+
+        <section>
+            <article>
+                <h3>Home Page</h3>
+                <a href="/index.html">Home</a>
+            </article>
+
+            <article>
+                <h3>Interview Preparation</h3>
+                <a href="/child pages/chatbot.html">Practice Interviews</a>
+            </article>
+
+            <article>
+                <h3>Resume Builder</h3>
+                <a href="/child pages/resume.html">View Job Postings</a>
+            </article>
+
+            <article>
+                <h3>Menu</h3>
+                <a href="/child pages/menu.html">Menu</a>
+            </article>
+        </section>
+    </main>
+
+    <main>
+        <section>
+            <h2>Job Postings</h2>
+
+            <p>
+                Search for job opportunities and find a position
+                that matches your skills.
+            </p>
+        </section>
+
+        <section aria-labelledby="search-heading">
+            <h2 id="search-heading">Search Jobs</h2>
+
+            <form action="#" method="get">
+
+                <label for="job-search">Job title or keyword</label>
+                <input type="search"
+                       id="job-search"
+                       name="search"
+                       placeholder="Example: Web Developer">
+
+                <label for="job-location">Location</label>
+                <input type="text"
+                       id="job-location"
+                       name="location"
+                       placeholder="Example: Rexburg, ID">
+
+                <label for="job-type">Job Type</label>
+                <select id="job-type" name="job-type">
+                    <option value="">All Job Types</option>
+                    <option value="full-time">Full Time</option>
+                    <option value="part-time">Part Time</option>
+                    <option value="internship">Internship</option>
+                    <option value="remote">Remote</option>
+                </select>
+
+                <button type="submit">Search Jobs</button>
+            </form>
+        </section>
+
+        <section aria-labelledby="results-heading">
+            <h2 id="results-heading">Available Jobs</h2>
+
+            <article>
+                <h3>Junior Web Developer</h3>
+                <p><strong>Company:</strong> Example Technologies</p>
+                <p><strong>Location:</strong> Rexburg, ID</p>
+                <p><strong>Job Type:</strong> Full Time</p>
+                <p>
+                    Help develop and maintain websites and web applications.
+                </p>
+                <a href="#">View Job</a>
+            </article>
+
+            <article>
+                <h3>Software Developer Intern</h3>
+                <p><strong>Company:</strong> Tech Solutions</p>
+                <p><strong>Location:</strong> Remote</p>
+                <p><strong>Job Type:</strong> Internship</p>
+                <p>
+                    Work with a development team to build and test software.
+                </p>
+                <a href="#">View Job</a>
+            </article>
+
+            <article>
+                <h3>IT Support Specialist</h3>
+                <p><strong>Company:</strong> Business Systems Inc.</p>
+                <p><strong>Location:</strong> Idaho Falls, ID</p>
+                <p><strong>Job Type:</strong> Full Time</p>
+                <p>
+                    Provide technical support and assistance to company employees.
+                </p>
+                <a href="#">View Job</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hire Higher</p>
+    </footer>
+
+</body>
+</html>

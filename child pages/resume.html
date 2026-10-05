@@ -3,9 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+    <title>Hire Higher - Resume Builder</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/images/HireHigher.png">
 </head>
 <body>
-    
+
+    <header>
+        <a href="index.html">
+            <h1>Hire Higher</h1>
+        </a>
+    </header>
+
+    <main>
+
+        <section>
+            <article>
+                <h3>Home Page</h3>
+                <a href="/index.html">Home</a>
+            </article>
+
+            <article>
+                <h3>Interview Preparation</h3>
+                <a href="/child pages/chatbot.html">Practice Interviews</a>
+            </article>
+
+            <article>
+                <h3>Find Jobs</h3>
+                <a href="/child pages/jobposting.html">View Job Postings</a>
+            </article>
+
+            <article>
+                <h3>Menu</h3>
+                <a href="/child pages/menu.html">Menu</a>
+            </article>
+        </section>
+    </main>
+
+    <main>
+        <h2>Resume Builder</h2>
+
+        <p>
+            Enter your information below to create your professional resume.
+        </p>
+
+        <form action="#" method="post">
+
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" name="full-name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location">
+            </fieldset>
+
+            <fieldset>
+                <legend>Professional Summary</legend>
+
+                <label for="summary">Summary</label>
+                <textarea id="summary" name="summary" rows="5"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Education</legend>
+
+                <label for="school">School</label>
+                <input type="text" id="school" name="school">
+
+                <label for="degree">Degree or Program</label>
+                <input type="text" id="degree" name="degree">
+
+                <label for="graduation">Graduation Date</label>
+                <input type="month" id="graduation" name="graduation">
+            </fieldset>
+
+            <fieldset>
+                <legend>Work Experience</legend>
+
+                <label for="job-title">Job Title</label>
+                <input type="text" id="job-title" name="job-title">
+
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company">
+
+                <label for="work-dates">Dates Worked</label>
+                <input type="text" id="work-dates" name="work-dates"
+                       placeholder="Example: January 2024 - Present">
+
+                <label for="responsibilities">Responsibilities</label>
+                <textarea id="responsibilities" name="responsibilities"
+                          rows="6"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Skills</legend>
+
+                <label for="skills">Skills</label>
+                <textarea id="skills" name="skills"
+                          rows="4"
+                          placeholder="Example: HTML, CSS, JavaScript, Communication"></textarea>
+            </fieldset>
+
+            <button type="submit">Save Resume</button>
+            <button type="reset">Clear Form</button>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hire Higher</p>
+    </footer>
+
 </body>
 </html>
