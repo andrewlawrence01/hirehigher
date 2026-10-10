@@ -1,13 +1,21 @@
+:root {
+  /* Define your color palette */
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --text-color: #333333;
+  --background-color: #f9f9f9;
+}
+
 *{
     box-sizing:border-box;
 }
 
 body {
-    background: pink;
+    background: var(--primary-color);
 }
 
 #wrapper{
-    background:white;
+    background: var(--secondary-color);
     min-height:100vh;
     min-width:80vw;
 }

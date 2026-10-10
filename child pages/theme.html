@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,39 +8,39 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/x-icon" href="/images/HireHigher.png">
 </head>
+
 <body>
+    <div id="wrapper">
+        <header>
+            <h1>Theme</h1>
+        </header>
 
-    <header>
-        <h1>Theme</h1>
-    </header>
+        <main>
+            <form action="#" method="post">
 
-    <main>
-        <form action="#" method="post">
+                <fieldset>
+                    <legend>Choose Your Theme</legend>
 
-            <fieldset>
-                <legend>Choose Your Theme</legend>
+                    <label>
+                        <input type="radio" name="theme" value="light" checked>
+                        Light Theme
+                    </label>
 
-                <label>
-                    <input type="radio"
-                           name="theme"
-                           value="light"
-                           checked>
-                    Light Theme
-                </label>
+                    <label>
+                        <input type="radio" name="theme" value="dark">
+                        Dark Theme
+                    </label>
+                </fieldset>
 
-                <label>
-                    <input type="radio"
-                           name="theme"
-                           value="dark">
-                    Dark Theme
-                </label>
-            </fieldset>
+                <button type="submit">Save Theme</button>
+            </form>
 
-            <button type="submit">Save Theme</button>
-        </form>
-
-        <p><a href="/child pages/menu.html">Back to Menu</a></p>
-    </main>
-
+            <p><a href="/child pages/menu.html">Back to Menu</a></p>
+        </main>
+        <footer>
+            <p>&copy; 2026 Hire Higher</p>
+        </footer>
+    </div>
 </body>
+
 </html>
