@@ -1,6 +1,7 @@
 header{
     display:flex;
-    background:red;
+    width:100%;
+    background: var(--background-color);
     flex-flow: row-wrap;
     justify-content:center;
 }

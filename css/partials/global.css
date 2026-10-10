@@ -1,21 +1,65 @@
 :root {
-  /* Define your color palette */
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --text-color: #333333;
-  --background-color: #f9f9f9;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333333;
+    --background-color: #f9f9f9;
 }
-
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
-
 body {
+    margin: 0;
     background: var(--primary-color);
+    display: flex;
+    justify-content: center;
 }
-
-#wrapper{
+#wrapper {
     background: var(--secondary-color);
-    min-height:100vh;
-    min-width:80vw;
+    min-height: 100vh;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.welcome{
+    text-align:center;
+}
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.5rem;
+    text-align: center;
+}
+article {
+    max-width: 400px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+article a {
+    width: fit-content;
+    max-width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    background: var(--primary-color);
 }
