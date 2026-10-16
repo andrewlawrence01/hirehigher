@@ -23,7 +23,7 @@ const app = initializeApp(firebaseConfig);
 
 
 
-const = ReadableByteStreamController;
+
 
 
 // FIREBASE JAVASCRIPT DO NOT DELETE - MOLLI >:(
