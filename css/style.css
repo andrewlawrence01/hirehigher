@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cal+Sans&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
@@ -9,6 +10,7 @@
     --border-top-color: #0E3A60;
 
     /* fonts */
+    --font-header: "Anton";
     --font-body: "Nunito", sans-serif;
 }
 * {
