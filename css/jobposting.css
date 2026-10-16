@@ -115,6 +115,62 @@ article a {
 #search-jobs {
     flex-direction: column;
 }
+
+/* Search bar */
+#searchForm {
+    width: min(90%, 700px);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#search {
+    flex: 1;
+    min-height: 58px;
+    padding: 0 1.5rem;
+    border: 3px solid var(--border-top-color);
+    border-radius: 999px;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    box-shadow: 0 5px 0 var(--border-top-color);
+    outline: none;
+}
+
+#search::placeholder {
+    color: #6b879d;
+}
+
+#search:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 5px 0 var(--border-top-color),
+                0 0 0 4px rgba(81, 255, 55, 0.25);
+}
+
+#searchForm button {
+    min-height: 58px;
+    padding: 0 1.5rem;
+    border: 3px solid var(--border-top-color);
+    border-radius: 999px;
+    background: var(--secondary-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 5px 0 var(--border-top-color);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#searchForm button:hover {
+    transform: translateY(-3px);
+}
+
+#searchForm button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 var(--border-top-color);
+}
 /* Responsive Styles*/
 @media (max-width: 800px) {
     #wrapper {
