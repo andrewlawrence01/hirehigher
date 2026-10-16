@@ -78,6 +78,10 @@ article a {
     justify-content:center;
 }
 
+#search-jobs{
+    flex-direction: column;
+}
+
 @media (max-width: 800px) {
     #wrapper {
         width: 100%;
