@@ -2,11 +2,16 @@
 @import "/css/partials/header.css";
 
 :root {
+    /* Colors */
     --primary-color: #308FE5;
     --secondary-color: #51FF37;
     --text-color: #000000;
     --background-color: #ffffff;
     --border-top-color: #0E3A60;
+
+    /* fonts */
+    --font-header: "Anton";
+    --font-body: "Nunito", sans-serif;
 }
 * {
     box-sizing: border-box;
@@ -16,10 +21,16 @@ body {
     background: var(--primary-color);
     display: flex;
     justify-content: center;
+    font-family: var(--font-body);
+    text-decoration: none;
 }
 img {
   max-width: 900px;
   height: 900px;
+  text-decoration: none;
+}
+a{
+    text-decoration: none;
 }
 #wrapper {
     background: var(--background-color);
@@ -29,6 +40,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none;
 }
 main {
     width: 100%;
@@ -37,6 +49,7 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    text-decoration: none;
 }
 .welcome{
     text-align:center;
@@ -50,6 +63,7 @@ section {
     align-items: stretch;
     gap: 1.5rem;
     text-align: center;
+    text-decoration: none;
 }
 article {
     max-width: 400px;
@@ -58,6 +72,7 @@ article {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    text-decoration: none;
     gap: 1rem;
 }
 article a {
@@ -77,6 +92,7 @@ article a {
     background: var(--background-color);
     flex-flow: row wrap;
     justify-content:center;
+    text-decoration: none;
 }
 @media (max-width: 800px) {
     #wrapper {

@@ -1,10 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 :root {
-    --primary-color: #308FE5;
-    --secondary-color: #51FF37;
+    /* Colors */
+    --primary-color: #308fe5;
+    --secondary-color: #51ff37;
     --text-color: #000000;
     --background-color: #ffffff;
-    --border-top-color: #0E3A60;
+    --border-top-color: #0e3a60;
+
+    /* Fonts */
+    --font-body: "Nunito", sans-serif;
 }
+/* General job posting styles */
 * {
     box-sizing: border-box;
 }
@@ -14,11 +20,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: var(--font-body);
 }
 img {
-  max-width: 900px;
-  height: 900px;
+    max-width: 900px;
+    height: 900px;
 }
+/* Wrapper */
 #wrapper {
     background: var(--background-color);
     min-height: 100vh;
@@ -28,6 +36,7 @@ img {
     flex-direction: column;
     align-items: center;
 }
+/* Main */
 main {
     width: 100%;
     padding: 1rem;
@@ -36,9 +45,11 @@ main {
     align-items: center;
     gap: 2rem;
 }
-.welcome{
-    text-align:center;
+.welcome {
+    text-align: center;
 }
+/* Sections */
+
 section {
     width: 100%;
     display: flex;
@@ -49,15 +60,38 @@ section {
     gap: 1.5rem;
     text-align: center;
 }
-article {
-    max-width: 400px;
-    margin: 0;
+#results {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
 }
+
+.job-card {
+    width: 100%;
+    max-width: 350px;
+    min-height: 250px;
+    padding: 1.5rem;
+    background: #eaf5ff;
+    border: 2px solid #b9ddf7;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, 0.15);
+    text-align: center;
+}
+
+.job-card h3 {
+    margin-top: 0;
+    color: var(--border-top-color);
+}
+
+.job-card p {
+    line-height: 1.5;
+}
+
+.job-card:hover {
+    transform: translateY(-6px);
+}
+/* Linkss */
 article a {
     width: fit-content;
     max-width: 100%;
@@ -69,15 +103,19 @@ article a {
     color: var(--text-color);
     background: var(--primary-color);
 }
-
-#header-placeholder{
-    display:flex;
-    width:100%;
+/* Header */
+#header-placeholder {
+    display: flex;
+    width: 100%;
     background: var(--background-color);
     flex-flow: row wrap;
-    justify-content:center;
+    justify-content: center;
 }
-
+/*Job Search*/
+#search-jobs {
+    flex-direction: column;
+}
+/* Responsive Styles*/
 @media (max-width: 800px) {
     #wrapper {
         width: 100%;
