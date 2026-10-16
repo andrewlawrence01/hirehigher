@@ -17,6 +17,7 @@ body {
 img {
   max-width: 900px;
   height: 900px;
+  text-decoration: none;
 }
 #wrapper {
     background: var(--background-color);
@@ -55,6 +56,7 @@ article {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    text-decoration: none;
     gap: 1rem;
 }
 article a {
