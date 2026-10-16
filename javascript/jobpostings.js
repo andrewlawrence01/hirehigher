@@ -19,16 +19,20 @@ const RED_FLAGS = [
   "@yahoo.com"
 ];
 
-async function getJobs(keyword) {
-  const response = await fetch(
-    `https://remotive.com/api/remote-jobs?search=${encodeURIComponent(
-      keyword
-    )}&limit=10`
-  );
+async function getJobs(keyword = "") {
+  let url = "https://remotive.com/api/remote-jobs?limit=10";
 
+  if (keyword !== "") {
+    url += `&search=${encodeURIComponent(keyword)}`;
+  }
+
+  const response = await fetch(url);
   const data = await response.json();
 
-  // Only show jobs where the keyword appears in the title
+  if (keyword === "") {
+    return data.jobs;
+  }
+
   const searchTerm = keyword.toLowerCase();
 
   return data.jobs.filter((job) =>
@@ -117,3 +121,19 @@ searchForm.addEventListener("submit", async (event) => {
       "<p>Something went wrong while searching for jobs.</p>";
   }
 });
+
+async function loadInitialJobs() {
+  try {
+    const jobs = await getJobs();
+
+    // Show the first three jobs before searching
+    showJobs(jobs.slice(0, 3));
+  } catch (error) {
+    console.error(error);
+
+    resultsDiv.innerHTML =
+      "<p>Unable to load job postings.</p>";
+  }
+}
+
+loadInitialJobs();

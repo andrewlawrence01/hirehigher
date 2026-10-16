@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 :root {
+    /* Colors */
     --primary-color: #308FE5;
     --secondary-color: #51FF37;
     --text-color: #000000;
     --background-color: #ffffff;
     --border-top-color: #0E3A60;
+
+    /* fonts */
+    --font-body: "Nunito", sans-serif;
 }
 * {
     box-sizing: border-box;
@@ -13,6 +19,7 @@ body {
     background: var(--primary-color);
     display: flex;
     justify-content: center;
+    font-family: var(--font-body);
 }
 img {
   max-width: 900px;
