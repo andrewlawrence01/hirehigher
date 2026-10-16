@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hire Higher - Job Postings</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jobposting.css">
     <link rel="icon" type="image/x-icon" href="/images/HireHigher.png">
+    <!-- DO NOT DELETE THIS JAVASCRIPT ITS NEEDED -->
     <script src="/javascript/jobpostings.js" defer></script>
     <script src="/javascript/header.js" defer></script>
 
@@ -17,8 +18,15 @@
 
     <main>
         <section>
-            <input id="search" placeholder="Search jobs (e.g. software)" />
-            <button id="searchBtn">Search</button>
+            <form id="searchForm">
+                <input 
+                id="search" 
+                type="text" 
+                placeholder="Search jobs (e.g. software)"/>
+
+                <button type="submit">Search</button>
+            </form>
+
             <div id="results"></div>
         </section>
     </main>
