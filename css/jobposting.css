@@ -110,6 +110,7 @@ article a {
     background: var(--background-color);
     flex-flow: row wrap;
     justify-content: center;
+    text-decoration: none;
 }
 /*Job Search*/
 #search-jobs {
