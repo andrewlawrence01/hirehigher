@@ -1,3 +1,6 @@
+@import "partials/footer.css";
+@import "/css/partials/header.css";
+
 :root {
     --primary-color: #308FE5;
     --secondary-color: #51FF37;
@@ -81,4 +84,3 @@ article a {
         max-width: 1200px;
     }
 }
-@import url(partials/footer.css);
