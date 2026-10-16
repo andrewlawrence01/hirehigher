@@ -123,6 +123,7 @@ article a {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin: 0 auto;
 }
 
 #search {
@@ -137,6 +138,7 @@ article a {
     font-size: 1.1rem;
     box-shadow: 0 5px 0 var(--border-top-color);
     outline: none;
+    
 }
 
 #search::placeholder {
