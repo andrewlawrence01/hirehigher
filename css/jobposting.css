@@ -20,6 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: var(--font-body);
 }
 img {
   max-width: 900px;
