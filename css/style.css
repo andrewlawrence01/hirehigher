@@ -75,10 +75,10 @@ article a {
     flex-flow: row wrap;
     justify-content:center;
 }
-@import "partials/footer.css";
 @media (max-width: 800px) {
     #wrapper {
         width: 100%;
         max-width: 1200px;
     }
 }
+@import url(partials/footer.css);
