@@ -60,14 +60,36 @@ section {
     gap: 1.5rem;
     text-align: center;
 }
-article {
-    max-width: 400px;
-    margin: 0;
+#results {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.job-card {
+    width: 100%;
+    max-width: 350px;
+    min-height: 250px;
+    padding: 1.5rem;
+    background: #eaf5ff;
+    border: 2px solid #b9ddf7;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, 0.15);
     text-align: center;
-    gap: 1rem;
+}
+
+.job-card h3 {
+    margin-top: 0;
+    color: var(--border-top-color);
+}
+
+.job-card p {
+    line-height: 1.5;
+}
+
+.job-card:hover {
+    transform: translateY(-6px);
 }
 /* Linkss */
 article a {

@@ -71,7 +71,8 @@ function showJobs(jobs) {
   jobs.forEach((job) => {
     const flags = checkJob(job);
     const div = document.createElement("div");
-
+    div.className = "job-card";
+    
     div.innerHTML = `
       <h3>${job.title}</h3>
 
