@@ -1,0 +1,22 @@
+#footer-placeholder{
+    width: 100%;
+}
+#footer-placeholder footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    width: 100%;
+    background: var(--border-top-color);
+    padding: 1rem;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    background-color: white;
+    border-radius: 100%;
+}

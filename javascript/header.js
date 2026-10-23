@@ -12,6 +12,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     headerContainer.innerHTML = await response.text();
+
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("hamburger-menu");
+    const backdrop = document.getElementById("menu-backdrop");
+    const closeBtn = document.getElementById("menu-close");
+
+    function setMenu(open) {
+      menu.classList.toggle("open", open);
+      backdrop.classList.toggle("open", open);
+      hamburger.setAttribute("aria-expanded", String(open));
+    }
+
+    hamburger.addEventListener("click", () => {
+      setMenu(!menu.classList.contains("open"));
+    });
+    closeBtn.addEventListener("click", () => setMenu(false));
+    backdrop.addEventListener("click", () => setMenu(false));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
+    });
   } catch (error) {
     console.error("Error loading header:", error);
   }

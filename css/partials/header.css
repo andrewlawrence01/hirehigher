@@ -1,11 +1,10 @@
-
 #header-placeholder header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-flow: row wrap;
     width: 100%;
-    background: var(--secondary-color);
+    background: var(--border-top-color);
     padding: 1rem;
 }
 
@@ -13,18 +12,25 @@
     width: 100px;
     height: auto;
     object-fit: contain;
+    box-shadow: 2px 2px 4px black;
+    margin: 1rem;
 }
 
 nav a {
-    color: var(--text-color);
+    color: white;
+    text-shadow: 2px 2px 4px black;
+
 }
 
 nav {
     display: flex;
     flex: 1;
     justify-content: center;
-    text-decoration: underline;
     gap: 5%;
+}
+
+nav :hover{
+    transform: scale(1.05);
 }
 
 #hamburger {
@@ -33,6 +39,85 @@ nav {
     cursor: pointer;
     font-size: 40px;
     margin-left: 2%;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+header {
+    position: relative;
+}
+
+/* Hamburger Button */
+#hamburger-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 280px;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--background-color);
+    border-left: 1px solid var(--border-top-color);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+#hamburger-menu.open {
+    transform: translateX(0);
+}    
+
+#hamburger-menu a {
+    align-self: flex-start;
+    padding: 0;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    text-decoration: none;
+    
+}
+
+#hamburger-menu a:hover {
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+#hamburger-menu h2 {
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+#menu-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+#menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+}
+
+#menu-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+#hamburger-menu hr{
+    width: 100%;
+    margin: 0.5rem 0 1rem;
+    border: none;
+    border-top: 1px solid var(--border-top-color);
 }
 
 /* Smaller screens */
@@ -42,4 +127,10 @@ nav {
         flex: auto;
         order: 3;
     }
+}
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cal+Sans&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+.anton-regular {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
