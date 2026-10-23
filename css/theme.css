@@ -1,5 +1,4 @@
 :root {
-    /* Colors */
     --primary-color: #308fe5;
     --secondary-color: #51ff37;
     --text-color: #000000;
@@ -9,20 +8,16 @@
     --card-border: #b9ddf7;
     --placeholder-color: #6b879d;
     --gray-color: #444444;
-
-
-    /* Fonts */
     --font-body: "Nunito", sans-serif;
 }
-
 :root[data-theme="dark"] {
     color-scheme: dark;
     --primary-color: #4aa3f5;
-    --secondary-color: #51ff37;
     --text-color: #f1f1f1;
     --background-color: #121212;
     --border-top-color: #2a6aa3;
-    --card-background: #ff9008;
+    --card-background: #1c2a38;
     --card-border: #2a6aa3;
     --placeholder-color: #8fa5b8;
+    --gray-color: #000000;
 }
