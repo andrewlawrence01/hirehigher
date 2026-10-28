@@ -1,136 +1,93 @@
-#header-placeholder header {
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-flow: row wrap;
-    width: 100%;
-    background: var(--border-top-color);
-    padding: 1rem;
-}
-
-.logo {
-    width: 100px;
-    height: auto;
-    object-fit: contain;
-    box-shadow: 2px 2px 4px black;
-    margin: 1rem;
-}
-
-nav a {
-    color: white;
-    text-shadow: 2px 2px 4px black;
+    gap: 1rem;
+    padding: .75rem 1.25rem;
+    border-bottom: 4px solid var(--border-top-color);
+    background: var(--card-background)
 
 }
 
-nav {
+header nav {
     display: flex;
-    flex: 1;
-    justify-content: center;
-    gap: 5%;
+    flex-wrap: wrap;
+    gap: .25rem 1.25rem;
 }
 
-nav :hover{
-    transform: scale(1.05);
-}
-
-#hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 40px;
-    margin-left: 2%;
-    color: white;
-    text-shadow: 2px 2px 4px black;
-}
-
-header {
-    position: relative;
-}
-
-/* Hamburger Button */
-#hamburger-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 280px;
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background: var(--background-color);
-    border-left: 1px solid var(--border-top-color);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-}
-
-#hamburger-menu.open {
-    transform: translateX(0);
-}    
-
-#hamburger-menu a {
-    align-self: flex-start;
-    padding: 0;
-    margin-bottom: 0.75rem;
+header nav a {
     color: var(--text-color);
-    text-decoration: none;
-    
+    font-weight: 700;
+    padding: .4rem .2rem;
+    border-bottom: 3px solid transparent;
 }
 
-#hamburger-menu a:hover {
-    color: var(--primary-color);
-    transform: scale(1.05);
+header nav a:hover {
+    border-bottom-color: var(--primary-color);
 }
 
-#hamburger-menu h2 {
-    margin: 0;
-    padding: 0;
-    border-bottom: none;
-}
-
+#hamburger,
 #menu-close {
-    align-self: flex-end;
     background: none;
-    border: none;
-    font-size: 2rem;
-    line-height: 1;
+    border: 2px solid var(--border-top-color);
+    border-radius: 10px;
     color: var(--text-color);
+    font-size: 1.5rem;
+    padding: .2rem .7rem;
     cursor: pointer;
 }
 
 #menu-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, .5);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 999;
+    transition: opacity .2s;
+    z-index: 10;
 }
 
 #menu-backdrop.open {
     opacity: 1;
     pointer-events: auto;
 }
-#hamburger-menu hr{
-    width: 100%;
-    margin: 0.5rem 0 1rem;
-    border: none;
-    border-top: 1px solid var(--border-top-color);
+
+#hamburger-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(300px, 85%);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    background: var(--background-color);
+    border-left: 4px solid var(--border-top-color);
+    transform: translateX(100%);
+    transition: transform .25s;
+    z-index: 11;
 }
 
-/* Smaller screens */
-@media (max-width: 600px) {
-    nav {
-        width: 100%;
-        flex: auto;
-        order: 3;
-    }
+#hamburger-menu.open {
+    transform: none;
 }
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cal+Sans&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
-.anton-regular {
-  font-family: "Anton", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+
+#hamburger-menu a {
+    color: var(--text-color);
+    font-weight: 700;
+    padding: .5rem;
+    border-radius: 8px;
+}
+
+#hamburger-menu a:hover {
+    background: var(--card-background);
+}
+
+#menu-close {
+    align-self: flex-end;
+}
+
+#hamburger-menu h2 {
+    margin: 0;
 }

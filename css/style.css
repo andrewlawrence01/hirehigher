@@ -48,7 +48,6 @@ a {
     flex-direction: column;
     align-items: center;
     border: 2px solid var(--border-top-color);
-    /* border-radius: 16px 16px 0 0; */
     overflow: hidden;
 }
 
@@ -159,115 +158,6 @@ article a:active {
     background: var(--background-color);
 }
 
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: .75rem 1.25rem;
-    border-bottom: 4px solid var(--border-top-color);
-}
-
-header nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .25rem 1.25rem;
-}
-
-header nav a {
-    color: var(--text-color);
-    font-weight: 700;
-    padding: .4rem .2rem;
-    border-bottom: 3px solid transparent;
-}
-
-header nav a:hover {
-    border-bottom-color: var(--primary-color);
-}
-
-#hamburger,
-#menu-close {
-    background: none;
-    border: 2px solid var(--border-top-color);
-    border-radius: 10px;
-    color: var(--text-color);
-    font-size: 1.5rem;
-    padding: .2rem .7rem;
-    cursor: pointer;
-}
-
-#menu-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, .5);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .2s;
-    z-index: 10;
-}
-
-#menu-backdrop.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-#hamburger-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: min(300px, 85%);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-    background: var(--background-color);
-    border-left: 4px solid var(--border-top-color);
-    transform: translateX(100%);
-    transition: transform .25s;
-    z-index: 11;
-}
-
-#hamburger-menu.open {
-    transform: none;
-}
-
-#hamburger-menu a {
-    color: var(--text-color);
-    font-weight: 700;
-    padding: .5rem;
-    border-radius: 8px;
-}
-
-#hamburger-menu a:hover {
-    background: var(--card-background);
-}
-
-#menu-close {
-    align-self: flex-end;
-}
-
-#hamburger-menu h2 {
-    margin: 0;
-}
-
-/* Footer */
-#footer-placeholder {
-    width: 100%;
-}
-
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    border-top: 4px solid var(--border-top-color);
-    background: var(--background-color);
-}
-
-footer p {
-    margin: 0;
-}
 
 /* Forms */
 label {
