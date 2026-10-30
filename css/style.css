@@ -34,9 +34,16 @@ a {
     outline-offset: 2px;
 }
 
+[data-theme="dark"] .logo,
+[data-theme="forest"] .logo,
+[data-theme="grape"] .logo,
+[data-theme="neon"] .logo {
+    content: url("/images/DarkMode.png");
+}
+
 .logo {
-    width: 56px;
-    height: 56px;
+    width: 76px;
+    height: 76px;
     object-fit: contain;
 }
 
