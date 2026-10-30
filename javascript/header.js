@@ -4,14 +4,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!headerContainer) return;
 
+  const prefix = window.location.pathname.includes("child%20pages") ? "../" : "";
+
   try {
-    const response = await fetch("/header.html");
+    const response = await fetch(prefix + "header.html");
 
     if (!response.ok) {
       throw new Error("Failed to load header");
     }
 
-    headerContainer.innerHTML = await response.text();
+    const html = (await response.text())
+      .replaceAll('href="', 'href="' + prefix)
+      .replaceAll('src="', 'src="' + prefix);
+
+    headerContainer.innerHTML = html;
 
     const hamburger = document.getElementById("hamburger");
     const menu = document.getElementById("hamburger-menu");
