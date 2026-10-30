@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!headerContainer) return;
 
   try {
-    const response = await fetch("/header.html");
+    const headerScript = document.querySelector('script[src*="header.js"]');
+    const headerUrl = new URL("../header.html", headerScript.src);
+    const response = await fetch(headerUrl);
 
     if (!response.ok) {
       throw new Error("Failed to load header");

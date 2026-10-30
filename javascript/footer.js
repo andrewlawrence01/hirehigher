@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!footerContainer) return;
 
   try {
-    const response = await fetch("/footer.html");
+    const footerScript = document.querySelector('script[src*="footer.js"]');
+    const footerUrl = new URL("../footer.html", footerScript.src);
+    const response = await fetch(footerUrl);
 
     if (!response.ok) {
       throw new Error("Failed to load footer");
