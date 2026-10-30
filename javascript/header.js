@@ -7,13 +7,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const prefix = window.location.pathname.includes("child%20pages") ? "../" : "";
 
   try {
-<<<<<<< HEAD
     const headerScript = document.querySelector('script[src*="header.js"]');
     const headerUrl = new URL("header.html", headerScript.src);
     const response = await fetch(headerUrl);
-=======
-    const response = await fetch(prefix + "header.html");
->>>>>>> 3a86953ac64453eb6ae2b4cf0870027ddd336285
 
     if (!response.ok) {
       throw new Error("Failed to load header");
