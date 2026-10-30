@@ -92,7 +92,7 @@ section {
 .job-card:hover {
     transform: translateY(-6px);
 }
-/* Linkss */
+/* Links */
 article a {
     width: fit-content;
     max-width: 100%;
