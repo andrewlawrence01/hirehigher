@@ -1,31 +1,5 @@
-@import "partials/footer.css";
-@import "/css/partials/header.css";
-@import "/css/jobposting.css";
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cal+Sans&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Cal+Sans&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Cal+Sans&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
-
-#idk{
-    transition: transform 10s;
-}
-#idk:hover{
-    transform: rotate(1000000deg);
-}
-
-/* Headings only */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Archivo", sans-serif;
-}
-
-p {
-    font-family: "Black and White", sans-serif;
-}
+/* Single stylesheet: replaces the old @imports of footer.css, header.css and jobposting.css */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 * {
     box-sizing: border-box;
@@ -37,35 +11,50 @@ body {
     display: flex;
     justify-content: center;
     font-family: var(--font-body);
-    text-decoration: none;
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-img {
-    max-width: 900px;
-    height: 900px;
-    text-decoration: none;
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-body);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-color);
 }
 
 a {
     text-decoration: none;
 }
 
+:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
 #wrapper {
     background: var(--background-color);
     min-height: 100vh;
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 1rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    border: 2px solid black;
+    border: 2px solid var(--border-top-color);
+    overflow: clip;
 }
 
 main {
     width: 100%;
-    padding: 1rem;
+    max-width: 1100px;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,12 +64,12 @@ main {
 
 .welcome {
     text-align: center;
+    max-width: 650px;
 }
 
 section {
     width: 100%;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: stretch;
@@ -88,54 +77,662 @@ section {
     text-align: center;
 }
 
+/* Cards */
+article,
+.job-card,
+.card {
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, .15);
+}
+
 article {
-    max-width: 400px;
-    margin: 0;
+    flex: 1 1 260px;
+    max-width: 340px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     gap: 1rem;
+    transition: transform .15s;
 }
 
-article a {
-    width: fit-content;
-    max-width: 100%;
-    padding: 1rem;
-    display: flex;
+article:hover,
+.job-card:hover {
+    transform: translateY(-4px);
+}
+
+article h3,
+.job-card h3 {
+    margin: 0;
+    color: var(--border-top-color);
+}
+
+/* Dark-style themes use the bright primary color for card headings */
+[data-theme="dark"] article h3,
+[data-theme="dark"] .job-card h3,
+[data-theme="grape"] article h3,
+[data-theme="grape"] .job-card h3,
+[data-theme="forest"] article h3,
+[data-theme="forest"] .job-card h3,
+[data-theme="neon"] article h3,
+[data-theme="neon"] .job-card h3 {
+    color: var(--primary-color);
+}
+
+article p {
+    margin: 0;
+    flex: 1;
+}
+
+/* Buttons */
+.btn,
+article a,
+button.btn {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    color: var(--text-color);
+    padding: .8rem 1.4rem;
+    border: 3px solid var(--border-top-color);
+    border-radius: 999px;
+    background: var(--secondary-color);
+    color: #000;
+    font: 800 1rem var(--font-body);
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--border-top-color);
+    transition: transform .15s, box-shadow .15s;
+}
+
+.btn:hover,
+article a:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active,
+article a:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--border-top-color);
+}
+
+.btn.alt {
     background: var(--primary-color);
 }
 
+/* Header */
 #header-placeholder {
-    display: flex;
     width: 100%;
     background: var(--background-color);
-    flex-flow: row wrap;
-    justify-content: center;
-    text-decoration: none;
 }
 
-/* Hamburger Menu */
 
+/* Forms */
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: .25rem;
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+textarea,
+select,
+#search {
+    width: 100%;
+    padding: .7rem 1rem;
+    border: 3px solid var(--border-top-color);
+    border-radius: 14px;
+    background: var(--background-color);
+    color: var(--text-color);
+    font: 1rem var(--font-body);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--placeholder-color);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+.field {
+    margin-bottom: 1rem;
+}
+
+/* Job search */
+#searchForm {
+    width: min(90%, 700px);
+    display: flex;
+    gap: .75rem;
+    margin: 0 auto;
+}
+
+#searchForm button {
+    padding: 0 1.5rem;
+    border: 3px solid var(--border-top-color);
+    border-radius: 999px;
+    background: var(--secondary-color);
+    color: #000;
+    font: 800 1rem var(--font-body);
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--border-top-color);
+}
+
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.job-card {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    transition: transform .15s;
+}
+
+.job-card a {
+    color: var(--primary-color);
+    font-weight: 800;
+}
+
+/* Tool pages (resume + interview practice) */
+.tool {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+
+.question {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 1rem 0;
+}
+
+.timer {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.hint {
+    color: var(--placeholder-color);
+    margin: .25rem 0 0;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    padding: 0;
+    list-style: none;
+}
+
+.chips li {
+    background: var(--primary-color);
+    color: #000;
+    padding: .15rem .8rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+/* Resume builder: sections inside the form */
+.group {
+    margin-bottom: 1.75rem;
+}
+
+.group > h3 {
+    margin: 0 0 .75rem;
+    color: var(--text-color);
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0 1rem;
+}
+
+/* Repeatable job / school entries */
+.entry {
+    background: var(--background-color);
+    border: 2px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: .85rem;
+}
+
+.entry-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .75rem;
+}
+
+.entry-tools {
+    display: flex;
+    gap: .4rem;
+}
+
+.icon-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--border-top-color);
+    border-radius: 10px;
+    background: var(--card-background);
+    color: var(--text-color);
+    font: 800 1rem var(--font-body);
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.icon-btn:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.icon-btn:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.btn.small {
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    box-shadow: 0 3px 0 var(--border-top-color);
+}
+
+.entry .hint {
+    font-weight: 400;
+}
+
+/* The resume itself (white "paper", same in every theme) */
+#preview {
+    --accent: #0e3a60;
+    background: #fff;
+    color: #1a1a1a;
+    border: 2px solid var(--card-border);
+    border-radius: 8px;
+    padding: 2.25rem;
+    min-height: 400px;
+    font-size: .95rem;
+    line-height: 1.45;
+    text-align: left;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, .15);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+#preview p {
+    margin: .25rem 0;
+}
+
+#preview h1 {
+    color: var(--accent);
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: -.01em;
+}
+
+#preview .r-head {
+    border-bottom: 4px solid var(--accent);
+    padding-bottom: .6rem;
+}
+
+#preview .r-contact {
+    color: #444;
+    margin: .35rem 0 0;
+    font-size: .9rem;
+}
+
+#preview h2 {
+    color: var(--accent);
+    font-size: .95rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: .15rem;
+    margin: 1.25rem 0 .5rem;
+    break-after: avoid;
+}
+
+#preview .r-entry {
+    margin-bottom: .75rem;
+    break-inside: avoid;
+}
+
+#preview .r-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0 1rem;
+}
+
+#preview .r-dates {
+    color: #555;
+    font-size: .85rem;
+    white-space: nowrap;
+}
+
+#preview .r-sub {
+    color: #444;
+    font-style: italic;
+}
+
+#preview ul {
+    margin: .3rem 0 0;
+    padding-left: 1.2rem;
+}
+
+#preview li {
+    margin: .1rem 0;
+}
+
+/* Keep the preview in view while filling out a long form */
+@media (min-width: 900px) {
+    #preview {
+        position: sticky;
+        top: 1rem;
+        max-height: calc(100vh - 2rem);
+        overflow: auto;
+    }
+}
 
 @media (max-width: 800px) {
     #wrapper {
         width: 100%;
-        max-width: 1200px;
-        margin-top: auto;
+        margin-top: 0;
+        border-radius: 0;
+    }
+
+    header nav {
+        font-size: .75rem;
     }
 }
 
-/* dark mode */
-:root[data-theme="dark"] {
-    color-scheme: dark;
-    --primary-color: #4aa3f5;
-    --text-color: #f1f1f1;
-    --background-color: #121212;
-    --border-top-color: #2a6aa3;
-    --gray-color: #000000;
-    
+@page {
+    margin: .5in;
+}
+
+/* Printing the resume page: show only the resume, flowing across pages */
+@media print {
+    body:has(#preview) {
+        background: #fff;
+        display: block;
+    }
+
+    body:has(#preview) #header-placeholder,
+    body:has(#preview) #footer-placeholder,
+    body:has(#preview) .welcome,
+    body:has(#preview) #resumeForm {
+        display: none !important;
+    }
+
+    body:has(#preview) #wrapper {
+        display: block;
+        border: none;
+        min-height: 0;
+        background: #fff;
+        overflow: visible;
+    }
+
+    body:has(#preview) main {
+        display: block;
+        max-width: none;
+        padding: 0;
+    }
+
+    body:has(#preview) .tool {
+        display: block;
+    }
+
+    #preview {
+        position: static !important;
+        max-height: none !important;
+        overflow: visible !important;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        min-height: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================
+   Theme page
+   Scoped with :has() so it only affects the form that
+   contains the theme radios.
+   ========================================================== */
+
+main > form:has(input[name="theme"]) {
+    width: 100%;
+    max-width: 520px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, .15);
+}
+
+/* Fieldset + legend */
+main > form:has(input[name="theme"]) fieldset {
+    border: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    min-width: 0;
+}
+
+main > form:has(input[name="theme"]) legend {
+    padding: 0;
+    margin-bottom: 1.25rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--border-top-color);
+}
+
+[data-theme="dark"] main > form:has(input[name="theme"]) legend,
+[data-theme="grape"] main > form:has(input[name="theme"]) legend,
+[data-theme="forest"] main > form:has(input[name="theme"]) legend,
+[data-theme="neon"] main > form:has(input[name="theme"]) legend {
+    color: var(--primary-color);
+}
+
+/* Each option becomes a selectable card */
+main > form:has(input[name="theme"]) label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 .85rem;
+    padding: 1rem 1.25rem;
+    background: var(--background-color);
+    border: 3px solid var(--card-border);
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .15s, border-color .15s, box-shadow .15s;
+}
+
+main > form:has(input[name="theme"]) label:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+}
+
+main > form:has(input[name="theme"]) label:has(input:checked) {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 0 var(--border-top-color);
+}
+
+main > form:has(input[name="theme"]) label:has(input:focus-visible) {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* Custom radio dot */
+main > form:has(input[name="theme"]) input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    margin: 0;
+    border: 3px solid var(--border-top-color);
+    border-radius: 50%;
+    background: var(--background-color);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+main > form:has(input[name="theme"]) input[type="radio"]::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    box-shadow: 0 0 0 2px var(--border-top-color);
+    transform: scale(0);
+    transition: transform .15s;
+}
+
+main > form:has(input[name="theme"]) input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+/* Little theme previews on the right of each card */
+main > form:has(input[name="theme"]) label::after {
+    content: "";
+    flex: none;
+    margin-left: auto;
+    width: 56px;
+    height: 36px;
+    border: 2px solid var(--border-top-color);
+    border-radius: 8px;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="light"])::after {
+    background:
+        linear-gradient(#308fe5, #308fe5) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#b9ddf7, #b9ddf7) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#b9ddf7, #b9ddf7) 6px 24px / 32px 4px no-repeat,
+        #ffffff;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="dark"])::after {
+    background:
+        linear-gradient(#4aa3f5, #4aa3f5) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#2a6aa3, #2a6aa3) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#2a6aa3, #2a6aa3) 6px 24px / 32px 4px no-repeat,
+        #121212;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="sunset"])::after {
+    background:
+        linear-gradient(#ff7a2f, #ff7a2f) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#ffc9a0, #ffc9a0) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#ffc9a0, #ffc9a0) 6px 24px / 32px 4px no-repeat,
+        #fff8f0;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="forest"])::after {
+    background:
+        linear-gradient(#4cc27a, #4cc27a) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#25523a, #25523a) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#25523a, #25523a) 6px 24px / 32px 4px no-repeat,
+        #0c1a12;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="grape"])::after {
+    background:
+        linear-gradient(#b57bff, #b57bff) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#5b3a8f, #5b3a8f) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#5b3a8f, #5b3a8f) 6px 24px / 32px 4px no-repeat,
+        #1a1026;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="neon"])::after {
+    background:
+        linear-gradient(#39ff14, #39ff14) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#00e5ff, #00e5ff) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#0f6f7d, #0f6f7d) 6px 24px / 32px 4px no-repeat,
+        #0a0f14;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="pink"])::after {
+    background:
+        linear-gradient(#ff5fae, #ff5fae) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#ffb8d9, #ffb8d9) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#ffb8d9, #ffb8d9) 6px 24px / 32px 4px no-repeat,
+        #fff5fa;
+}
+
+/* Save button, matching the site's chunky pill buttons */
+main > form:has(input[name="theme"]) button[type="submit"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: .9rem 1.4rem;
+    border: 3px solid var(--border-top-color);
+    border-radius: 999px;
+    background: var(--secondary-color);
+    color: #000;
+    font: 800 1.1rem var(--font-body);
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--border-top-color);
+    transition: transform .15s, box-shadow .15s;
+}
+
+main > form:has(input[name="theme"]) button[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+
+main > form:has(input[name="theme"]) button[type="submit"]:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--border-top-color);
+}
+
+@media (max-width: 480px) {
+    main > form:has(input[name="theme"]) {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    main > form:has(input[name="theme"]) legend {
+        font-size: 1.4rem;
+    }
+
+    main > form:has(input[name="theme"]) label::after {
+        width: 44px;
+    }
 }
