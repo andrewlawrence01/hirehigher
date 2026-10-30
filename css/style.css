@@ -1,6 +1,6 @@
 /* Single stylesheet: replaces the old @imports of footer.css, header.css and jobposting.css */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
-@import "partials/footer.css";
+@import "/css/partials/footer.css";
 
 * {
     box-sizing: border-box;
