@@ -109,8 +109,15 @@ article h3,
     color: var(--border-top-color);
 }
 
+/* Dark-style themes use the bright primary color for card headings */
 [data-theme="dark"] article h3,
-[data-theme="dark"] .job-card h3 {
+[data-theme="dark"] .job-card h3,
+[data-theme="grape"] article h3,
+[data-theme="grape"] .job-card h3,
+[data-theme="forest"] article h3,
+[data-theme="forest"] .job-card h3,
+[data-theme="neon"] article h3,
+[data-theme="neon"] .job-card h3 {
     color: var(--primary-color);
 }
 
@@ -343,5 +350,216 @@ select:focus {
 @media (prefers-reduced-motion: reduce) {
     * {
         transition: none !important;
+    }
+}
+
+/* ==========================================================
+   Theme page
+   Scoped with :has() so it only affects the form that
+   contains the theme radios.
+   ========================================================== */
+
+main > form:has(input[name="theme"]) {
+    width: 100%;
+    max-width: 520px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, .15);
+}
+
+/* Fieldset + legend */
+main > form:has(input[name="theme"]) fieldset {
+    border: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    min-width: 0;
+}
+
+main > form:has(input[name="theme"]) legend {
+    padding: 0;
+    margin-bottom: 1.25rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--border-top-color);
+}
+
+[data-theme="dark"] main > form:has(input[name="theme"]) legend,
+[data-theme="grape"] main > form:has(input[name="theme"]) legend,
+[data-theme="forest"] main > form:has(input[name="theme"]) legend,
+[data-theme="neon"] main > form:has(input[name="theme"]) legend {
+    color: var(--primary-color);
+}
+
+/* Each option becomes a selectable card */
+main > form:has(input[name="theme"]) label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 .85rem;
+    padding: 1rem 1.25rem;
+    background: var(--background-color);
+    border: 3px solid var(--card-border);
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .15s, border-color .15s, box-shadow .15s;
+}
+
+main > form:has(input[name="theme"]) label:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+}
+
+main > form:has(input[name="theme"]) label:has(input:checked) {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 0 var(--border-top-color);
+}
+
+main > form:has(input[name="theme"]) label:has(input:focus-visible) {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* Custom radio dot */
+main > form:has(input[name="theme"]) input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    margin: 0;
+    border: 3px solid var(--border-top-color);
+    border-radius: 50%;
+    background: var(--background-color);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+main > form:has(input[name="theme"]) input[type="radio"]::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    box-shadow: 0 0 0 2px var(--border-top-color);
+    transform: scale(0);
+    transition: transform .15s;
+}
+
+main > form:has(input[name="theme"]) input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+/* Little theme previews on the right of each card */
+main > form:has(input[name="theme"]) label::after {
+    content: "";
+    flex: none;
+    margin-left: auto;
+    width: 56px;
+    height: 36px;
+    border: 2px solid var(--border-top-color);
+    border-radius: 8px;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="light"])::after {
+    background:
+        linear-gradient(#308fe5, #308fe5) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#b9ddf7, #b9ddf7) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#b9ddf7, #b9ddf7) 6px 24px / 32px 4px no-repeat,
+        #ffffff;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="dark"])::after {
+    background:
+        linear-gradient(#4aa3f5, #4aa3f5) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#2a6aa3, #2a6aa3) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#2a6aa3, #2a6aa3) 6px 24px / 32px 4px no-repeat,
+        #121212;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="sunset"])::after {
+    background:
+        linear-gradient(#ff7a2f, #ff7a2f) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#ffc9a0, #ffc9a0) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#ffc9a0, #ffc9a0) 6px 24px / 32px 4px no-repeat,
+        #fff8f0;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="forest"])::after {
+    background:
+        linear-gradient(#4cc27a, #4cc27a) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#25523a, #25523a) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#25523a, #25523a) 6px 24px / 32px 4px no-repeat,
+        #0c1a12;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="grape"])::after {
+    background:
+        linear-gradient(#b57bff, #b57bff) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#5b3a8f, #5b3a8f) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#5b3a8f, #5b3a8f) 6px 24px / 32px 4px no-repeat,
+        #1a1026;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="neon"])::after {
+    background:
+        linear-gradient(#39ff14, #39ff14) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#00e5ff, #00e5ff) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#0f6f7d, #0f6f7d) 6px 24px / 32px 4px no-repeat,
+        #0a0f14;
+}
+
+main > form:has(input[name="theme"]) label:has(input[value="pink"])::after {
+    background:
+        linear-gradient(#ff5fae, #ff5fae) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#ffb8d9, #ffb8d9) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#ffb8d9, #ffb8d9) 6px 24px / 32px 4px no-repeat,
+        #fff5fa;
+}
+
+/* Save button, matching the site's chunky pill buttons */
+main > form:has(input[name="theme"]) button[type="submit"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: .9rem 1.4rem;
+    border: 3px solid var(--border-top-color);
+    border-radius: 999px;
+    background: var(--secondary-color);
+    color: #000;
+    font: 800 1.1rem var(--font-body);
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--border-top-color);
+    transition: transform .15s, box-shadow .15s;
+}
+
+main > form:has(input[name="theme"]) button[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+
+main > form:has(input[name="theme"]) button[type="submit"]:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--border-top-color);
+}
+
+@media (max-width: 480px) {
+    main > form:has(input[name="theme"]) {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    main > form:has(input[name="theme"]) legend {
+        font-size: 1.4rem;
+    }
+
+    main > form:has(input[name="theme"]) label::after {
+        width: 44px;
     }
 }

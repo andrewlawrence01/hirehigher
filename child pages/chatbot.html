@@ -3,47 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hire Higher - Practice Interviews</title>
+    <title>Hire Higher - AI Interview Coach</title>
     <script src="/javascript/theme.js"></script>
     <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/x-icon" href="/images/HireHigher.png">
     <script src="/javascript/header.js" defer></script>
     <script src="/javascript/footer.js" defer></script>
-    <script src="/javascript/interview.js" defer></script>
+    <script type="module" src="/javascript/firebase.js"></script>
+    <script src="/javascript/chatbot.js" defer></script>
+    <style>
+        .chat-log { display: flex; flex-direction: column; gap: 10px; max-height: 420px; overflow-y: auto; padding: 4px 0; }
+        .msg { padding: 10px 14px; border-radius: 12px; max-width: 85%; white-space: pre-wrap; line-height: 1.4; }
+        .msg.coach { align-self: flex-start; background: rgba(128, 128, 128, 0.18); }
+        .msg.you { align-self: flex-end; background: rgba(80, 130, 255, 0.25); }
+        .chat-input { display: flex; gap: 8px; margin-top: 12px; }
+        .chat-input textarea { flex: 1; }
+    </style>
 </head>
 <body>
 <div id="wrapper">
     <div id="header-placeholder"></div>
     <main>
-        <div class="welcome"><h2>Practice interviews</h2><p>Pick a topic, answer out loud, and use the timer to keep each answer under two minutes.</p></div>
+        <div class="welcome">
+            <h2>AI Interview Coach</h2>
+            <p>Tell the coach what job you're interviewing for, then answer its questions one at a time.</p>
+        </div>
         <div class="tool">
             <div class="card">
-                <div class="field"><label for="category">Question type</label>
-                    <select id="category">
-                        <option value="behavioral">Behavioral</option>
-                        <option value="general">General</option>
-                        <option value="strengths">Strengths and weaknesses</option>
-                        <option value="closing">Closing questions</option>
-                    </select>
+                <div class="chat-log" id="chatLog" aria-live="polite"></div>
+                <div class="chat-input">
+                    <textarea id="chatInput" rows="2" placeholder="Type here and press Enter to send"></textarea>
+                    <button type="button" class="btn" id="sendBtn">Send</button>
                 </div>
-                <p class="question" id="question" aria-live="polite">Press "New question" to start.</p>
-                <p class="hint" id="tip"></p>
-                <div class="controls">
-                    <button type="button" class="btn" id="newBtn">New question</button>
-                    <button type="button" class="btn alt" id="doneBtn">I answered this</button>
-                </div>
-                <p class="hint" id="count">Answered this session: 0</p>
-            </div>
-            <div class="card">
-                <h2>Timer</h2>
-                <div class="timer" id="timer">2:00</div>
-                <div class="controls">
-                    <button type="button" class="btn" id="startBtn">Start</button>
-                    <button type="button" class="btn alt" id="resetBtn">Reset</button>
-                </div>
-                <h2>Your notes</h2>
-                <textarea id="notes" rows="5" placeholder="Jot down the key points of your answer. Saved automatically."></textarea>
+                <p class="hint">Please don't include your full name, contact info, or confidential employer details. Messages may be reviewed by Google to improve its products.</p>
             </div>
         </div>
     </main>

@@ -21,3 +21,66 @@
     --placeholder-color: #8fa5b8;
     --gray-color: #000000;
 }
+
+:root[data-theme="sunset"] {
+    --primary-color: #ff7a2f;
+    --secondary-color: #ffd23f;
+    --text-color: #2b1408;
+    --background-color: #fff8f0;
+    --border-top-color: #8a3a0c;
+    --card-background: #ffe9d6;
+    --card-border: #ffc9a0;
+    --placeholder-color: #a77b5f;
+    --gray-color: #4a2a15;
+}
+
+:root[data-theme="forest"] {
+    color-scheme: dark;
+    --primary-color: #4cc27a;
+    --secondary-color: #b6f23a;
+    --text-color: #e6f4ea;
+    --background-color: #0c1a12;
+    --border-top-color: #2f7d4f;
+    --card-background: #14281c;
+    --card-border: #25523a;
+    --placeholder-color: #7fa38b;
+    --gray-color: #040a06;
+}
+
+:root[data-theme="grape"] {
+    color-scheme: dark;
+    --primary-color: #b57bff;
+    --secondary-color: #ff7ad9;
+    --text-color: #f3eaff;
+    --background-color: #1a1026;
+    --border-top-color: #7d4bd1;
+    --card-background: #2a1b3d;
+    --card-border: #5b3a8f;
+    --placeholder-color: #a894c4;
+    --gray-color: #0d0714;
+}
+
+:root[data-theme="pink"] {
+    --primary-color: #ff5fae;
+    --secondary-color: #8affd1;
+    --text-color: #3a0f26;
+    --background-color: #fff5fa;
+    --border-top-color: #9c1d5a;
+    --card-background: #ffe3f0;
+    --card-border: #ffb8d9;
+    --placeholder-color: #b07a96;
+    --gray-color: #5a1c3c;
+}
+
+:root[data-theme="neon"] {
+    color-scheme: dark;
+    --primary-color: #00e5ff;
+    --secondary-color: #39ff14;
+    --text-color: #e8fff8;
+    --background-color: #0a0f14;
+    --border-top-color: #00b8cc;
+    --card-background: #101b24;
+    --card-border: #0f6f7d;
+    --placeholder-color: #6fa3ad;
+    --gray-color: #000000;
+}
