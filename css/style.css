@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import "/css/partials/header.css";
 @import "/css/partials/footer.css";
-@import "/css/jobposting.css";
 
 * {
     box-sizing: border-box;
