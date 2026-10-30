@@ -49,6 +49,13 @@ a {
     object-fit: contain;
 }
 
+[data-theme="dark"] .logo,
+[data-theme="grape"] .logo,
+[data-theme="forest"] .logo,
+[data-theme="neon"] .logo {
+    content: url("../images/DarkMode.png");
+}
+
 #wrapper {
     background: var(--background-color);
     min-height: 100vh;
