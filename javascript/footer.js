@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!footerContainer) return;
 
-  const prefix = window.location.pathname.includes("child%20pages") ? "../" : "";
+  const prefix = window.location.pathname.includes("child-pages") ? "../" : "";
 
   try {
     const footerScript = document.querySelector('script[src*="footer.js"]');

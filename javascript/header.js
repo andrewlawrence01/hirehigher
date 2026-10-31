@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!headerContainer) return;
 
-  const prefix = window.location.pathname.includes("child%20pages") ? "../" : "";
+  const prefix = window.location.pathname.includes("child-pages") ? "../" : "";
 
   try {
     const headerScript = document.querySelector('script[src*="header.js"]');
