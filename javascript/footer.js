@@ -1,26 +1,31 @@
+
 document.addEventListener("DOMContentLoaded", async () => {
-  const footerContainer =
-    document.getElementById("footer-placeholder");
+    const footerContainer = document.getElementById("footer-placeholder");
 
-  if (!footerContainer) return;
+    if (!footerContainer) return;
 
-  const prefix = window.location.pathname.includes("child-pages") ? "../" : "";
+    const basePath = "/hirehigher/";
 
-  try {
-    const footerScript = document.querySelector('script[src*="footer.js"]');
-    const footerUrl = new URL("/hirehigher/footer.html", footerScript.src);
-    const response = await fetch(footerUrl);
+    try {
+        const response = await fetch(`${basePath}footer.html`);
 
-    if (!response.ok) {
-      throw new Error("Failed to load footer");
+        if (!response.ok) {
+            throw new Error("Failed to load footer");
+        }
+
+        const html = await response.text();
+        footerContainer.innerHTML = html;
+
+        // Load the footer stylesheet
+        if (!document.querySelector("#footer-stylesheet")) {
+            const link = document.createElement("link");
+            link.id = "footer-stylesheet";
+            link.rel = "stylesheet";
+            link.href = `${basePath}css/partials/footer.css`;
+            document.head.appendChild(link);
+        }
+
+    } catch (error) {
+        console.error("Error loading footer:", error);
     }
-
-    const html = (await response.text())
-      .replaceAll('href="', 'href="' + prefix)
-      .replaceAll('src="', 'src="' + prefix);
-
-    footerContainer.innerHTML = html;
-  } catch (error) {
-    console.error("Error loading footer:", error);
-  }
 });
