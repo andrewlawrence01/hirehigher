@@ -24,13 +24,26 @@ const app = initializeApp(firebaseConfig);
 const ai = getAI(app, { backend: new GoogleAIBackend() });
 
 const model = getGenerativeModel(ai, {
-    model: "gemini-3.5-flash-lite",
+  model: "gemini-3.5-flash-lite",
   systemInstruction: `You are a friendly, honest job interview coach.
-Ask ONE interview question at a time based on the job title given.
-After the user answers, give 2-3 sentences of concrete feedback
-(use the STAR method where relevant), then ask the next question.
-Keep replies under 150 words. Stay on the topic of interview prep.`,
-  generationConfig: { maxOutputTokens: 400 },
+  Ask ONE interview question at a time based on the job title given.
+  After the user answers, give 2-3 sentences of concrete feedback
+  (use the STAR method where relevant), then ask the next question.
+  Keep the reply under 150 words. Stay on the topic of interview prep.
+
+  Respond ONLY with JSON, no markdown, in this format:
+  {"score": <integer 1-5 or null>, "tip": "<one short sentence of advice>", "reply": "<your feedback followed by your next question>"}
+
+  Put your feedback and your next question together in "reply".
+  Score the candidate's latest answer: 1 = off-topic/very weak, 2 = weak,
+  3 = acceptable, 4 = good, 5 = excellent. Judge relevance, clarity,
+  specificity, and concrete examples. Be a tough but fair grader.
+  Use null for the score if the message isn't an interview answer
+  (e.g. they're just telling you the job title).`,
+    generationConfig: {
+      maxOutputTokens: 800,
+      responseMimeType: "application/json",
+    },
 });
 
 const chat = model.startChat();

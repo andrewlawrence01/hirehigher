@@ -738,6 +738,8 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     box-shadow: 0 1px 0 var(--border-top-color);
 }
 
+/* AI st */
+
 @media (max-width: 480px) {
     main > form:has(input[name="theme"]) {
         padding: 1.25rem;
