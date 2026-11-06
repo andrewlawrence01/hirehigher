@@ -1,0 +1,312 @@
+/* =========================================================
+   Home page only. Everything is scoped under main.home, so no
+   other page is affected. Load order in index.html:
+   style.css -> theme.css -> home.css
+
+   Uses your theme variables (--primary-color, --secondary-color,
+   --text-color, --background-color, --border-top-color,
+   --card-background, --card-border), so all 7 themes work.
+   ========================================================= */
+
+main.home {
+    /* Heading/label color: your site uses --border-top-color on light
+       themes and --primary-color on dark-style themes. Same rule here. */
+    --h-accent-text: var(--border-top-color);
+    --h-muted: color-mix(in srgb, var(--text-color) 72%, var(--background-color));
+    --h-shadow: rgba(0, 0, 0, .14);
+
+    /* undo the global `main` flex/padding/max-width from style.css */
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] main.home,
+[data-theme="forest"] main.home,
+[data-theme="grape"] main.home,
+[data-theme="neon"] main.home {
+    --h-accent-text: var(--primary-color);
+    --h-shadow: rgba(0, 0, 0, .35);
+}
+
+/* ---------- Buttons: reuse your global .btn, just a bit bigger ---------- */
+main.home .btn {
+    font-size: 1.05rem;
+    padding: .9rem 1.8rem;
+}
+main.home .btn.ghost {
+    background: transparent;
+    color: var(--text-color);
+}
+
+/* =========================================================
+   LEVEL 1: HERO
+   ========================================================= */
+main.home .hero {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 56px;
+    align-items: center;
+    max-width: none;
+    margin: 0;
+    /* full-width background, content held to ~1070px */
+    padding: 80px max(24px, calc((100% - 1072px) / 2)) 100px;
+    text-align: left;
+    background:
+        radial-gradient(700px 420px at 82% 35%, color-mix(in srgb, var(--primary-color) 24%, transparent), transparent 70%),
+        radial-gradient(520px 340px at 5% 0%, color-mix(in srgb, var(--secondary-color) 14%, transparent), transparent 70%);
+}
+
+main.home .eyebrow {
+    display: inline-block;
+    font-weight: 800;
+    font-size: .85rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--h-accent-text);
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+}
+
+main.home .hero h2 {
+    margin: 0;
+    font-size: clamp(2.4rem, 5.4vw, 4.2rem);
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -.03em;
+}
+main.home .hero h2 em { font-style: normal; color: var(--primary-color); }
+
+main.home .hero p {
+    margin: 22px 0 0;
+    font-size: 1.2rem;
+    color: var(--h-muted);
+    max-width: 30em;
+}
+
+main.home .hero-cta {
+    margin-top: 34px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* decorative resume card + floating chips */
+main.home .visual { position: relative; height: 400px; }
+
+main.home .doc {
+    position: absolute;
+    inset: 20px 40px 20px 20px;
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 6px 0 var(--border-top-color), 0 28px 50px var(--h-shadow);
+    transform: rotate(-3deg);
+}
+main.home .doc .avatar {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: 3px solid var(--border-top-color);
+}
+main.home .doc .bar {
+    height: 11px; border-radius: 6px; margin-top: 14px;
+    background: var(--card-border);
+}
+main.home .doc .bar.w1 { width: 62%; margin-top: 18px; background: color-mix(in srgb, var(--primary-color) 60%, var(--card-background)); }
+main.home .doc .bar.w2 { width: 90%; }
+main.home .doc .bar.w3 { width: 78%; }
+main.home .doc .bar.w4 { width: 84%; }
+main.home .doc .bar.w5 { width: 50%; margin-top: 28px; background: color-mix(in srgb, var(--primary-color) 60%, var(--card-background)); }
+
+main.home .chip {
+    position: absolute;
+    background: var(--background-color);
+    color: var(--h-accent-text);
+    border: 3px solid var(--border-top-color);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-weight: 800;
+    font-size: .95rem;
+    box-shadow: 0 4px 0 var(--border-top-color);
+    animation: home-float 5s ease-in-out infinite;
+}
+main.home .chip.c1 { top: 0; right: 0; }
+main.home .chip.c2 { bottom: 70px; left: -14px; animation-delay: -1.6s; }
+main.home .chip.c3 { bottom: 0; right: 14px; animation-delay: -3.2s; }
+
+@keyframes home-float { 50% { transform: translateY(-10px); } }
+
+/* =========================================================
+   LEVEL 2: CHOOSE YOUR LEVEL
+   ========================================================= */
+main.home .path-band {
+    background: var(--card-background);
+    border-top: 2px solid var(--card-border);
+    border-bottom: 2px solid var(--card-border);
+    padding: 90px 24px;
+}
+main.home .path-inner { max-width: 1000px; margin: 0 auto; }
+
+main.home .section-head { text-align: center; max-width: 620px; margin: 0 auto 60px; }
+main.home .section-head h2 {
+    margin: 0;
+    font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+    font-weight: 900;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+}
+main.home .section-head p { margin: 14px 0 0; color: var(--h-muted); font-size: 1.1rem; }
+
+/* this is a <section>, so reset the global flex-wrap section rules */
+main.home .levels {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 28px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+/* dotted rail connecting the badges */
+main.home .levels::before {
+    content: "";
+    position: absolute;
+    left: 39px; top: 40px; bottom: 40px;
+    width: 3px;
+    background: repeating-linear-gradient(to bottom, var(--border-top-color) 0 10px, transparent 10px 20px);
+    opacity: .55;
+}
+
+/* these are <article>s, so override the global card rules */
+main.home .level {
+    position: relative;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    flex: none;
+    max-width: none;
+    margin: 0;
+    text-align: left;
+    background: var(--background-color);
+    border: 2px solid var(--card-border);
+    border-radius: 28px;
+    padding: 28px 32px 28px 0;
+    box-shadow: 0 6px 12px var(--h-shadow);
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+main.home .level:hover {
+    transform: translateX(8px);
+    border-color: var(--primary-color);
+    box-shadow: 0 6px 0 var(--border-top-color), 0 18px 36px var(--h-shadow);
+}
+
+main.home .badge {
+    justify-self: center;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-weight: 900; font-size: 1.5rem;
+    background: var(--secondary-color);
+    color: #000;
+    border: 3px solid var(--border-top-color);
+    box-shadow: 0 0 0 6px var(--background-color);
+}
+
+main.home .tag {
+    font-size: .8rem; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--h-accent-text);
+}
+main.home .level h3 {
+    margin: 2px 0 6px;
+    font-size: 1.55rem; font-weight: 800; line-height: 1.2;
+    color: var(--text-color);
+}
+main.home .level p { margin: 0; flex: none; color: var(--h-muted); max-width: 36em; }
+
+/* step 1 stands out */
+main.home .level.feature {
+    padding-top: 40px; padding-bottom: 40px;
+    border-color: var(--primary-color);
+    background: linear-gradient(120deg, color-mix(in srgb, var(--primary-color) 16%, var(--background-color)), var(--background-color));
+}
+main.home .level.feature h3 { font-size: 1.9rem; }
+
+/* steps 2 and 3: quiet text link (undo the global `article a` button look) */
+main.home .level .more {
+    display: inline-block;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: var(--h-accent-text);
+    font: 800 1.05rem var(--font-body);
+    white-space: nowrap;
+}
+main.home .level .more:hover { transform: none; text-decoration: underline; }
+main.home .level .more:active { transform: none; box-shadow: none; }
+
+/* make the WHOLE row clickable using its existing link */
+main.home .level .more::after,
+main.home .level .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+}
+
+/* =========================================================
+   LEVEL 3: CLOSING CTA
+   ========================================================= */
+main.home .closing { max-width: 1000px; margin: 0 auto; padding: 90px 24px; text-align: center; }
+main.home .closing .box {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--card-background), color-mix(in srgb, var(--primary-color) 16%, var(--card-background)));
+    border: 2px solid var(--card-border);
+    border-radius: 40px;
+    padding: 64px 24px;
+    box-shadow: 0 6px 0 var(--border-top-color);
+}
+main.home .closing .box::after {
+    content: "";
+    position: absolute;
+    width: 380px; height: 380px;
+    right: -100px; top: -140px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--secondary-color) 30%, transparent), transparent 70%);
+    pointer-events: none;
+}
+main.home .closing h2 {
+    position: relative;
+    margin: 0;
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: -.02em;
+}
+main.home .closing p { position: relative; margin: 12px 0 30px; color: var(--h-muted); }
+main.home .closing .btn { position: relative; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 860px) {
+    main.home .hero { grid-template-columns: 1fr; padding-top: 56px; padding-bottom: 72px; gap: 32px; }
+    main.home .visual { height: 300px; }
+    main.home .levels::before { display: none; }
+    main.home .level { grid-template-columns: 1fr; gap: 14px; padding: 26px; }
+    main.home .level:hover { transform: none; }
+    main.home .badge { justify-self: start; }
+}

@@ -738,7 +738,40 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     box-shadow: 0 1px 0 var(--border-top-color);
 }
 
-/* AI st */
+/* AI coach reactions */
+.reaction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin: 6px 0 2px;
+    font-size: 0.85em;
+    font-weight: 600;
+    animation: pop 0.3s ease-out;
+}
+
+.reaction-face {
+    font-size: 2em;
+}
+
+.r1 .reaction-text { color: #ef4444; }
+.r2 .reaction-text { color: #f97316; }
+.r3 .reaction-text { color: #eab308; }
+.r4 .reaction-text { color: #84cc16; }
+.r5 .reaction-text { color: #22c55e; }
+
+#chatLog {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* MEDIA STYLES */
+
+@keyframes pop {
+    0%   { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1);   opacity: 1; }
+}
 
 @media (max-width: 480px) {
     main > form:has(input[name="theme"]) {

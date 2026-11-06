@@ -8,6 +8,7 @@
     <script src="javascript/theme.js" ></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="icon" type="image/x-icon" href="images/HireHigher.png">
     <script src="javascript/header.js" defer></script>
     <script src="javascript/footer.js" defer></script>
@@ -19,46 +20,102 @@
 
         <div id="header-placeholder"></div>
 
-        <main>
-            <div class="welcome">
-                <h2>Go through the hiring process With Confidence</h2>
-                <p>
-                    Create a strong resume, prepare for interviews, and find
-                    job opportunities all in one place.
-                </p>
-                <h2>What Can We Help You With?</h2>
+        <main class="home">
 
+            <!-- LEVEL 1: HERO -->
+            <div class="welcome hero">
+                <div class="hero-text">
+                    <span class="eyebrow">Your career toolkit</span>
+                    <h2>Go through the hiring process <em>With Confidence</em></h2>
+                    <p>
+                        Create a strong resume, prepare for interviews, and find
+                        job opportunities all in one place.
+                    </p>
+                    <div class="hero-cta">
+                        <a class="btn" href="child-pages/resume.html">Get Started</a>
+                        <a class="btn ghost" href="#path">See how it works</a>
+                    </div>
+                </div>
+
+                <div class="visual" aria-hidden="true">
+                    <div class="doc">
+                        <div class="avatar"></div>
+                        <div class="bar w1"></div>
+                        <div class="bar w2"></div>
+                        <div class="bar w3"></div>
+                        <div class="bar w4"></div>
+                        <div class="bar w5"></div>
+                        <div class="bar w2"></div>
+                        <div class="bar w3"></div>
+                    </div>
+                    <div class="chip c1">Resume ready ✓</div>
+                    <div class="chip c2">Interview practice</div>
+                    <div class="chip c3">New job matches</div>
+                </div>
             </div>
 
-            <section>
+            <!-- LEVEL 2: CHOOSE YOUR LEVEL -->
+            <div class="path-band" id="path">
+                <div class="path-inner">
+                    <div class="section-head">
+                        <h2>What Can We Help You With?</h2>
+                        <p>Start at the beginning or jump in wherever you are. Each step builds on the last.</p>
+                    </div>
 
-                <article>
-                    <h3>Resume Builder</h3>
-                    <p>
-                        Build a professional resume and highlight your skills,
-                        experience, and education.
-                    </p>
-                    <a href="child-pages/resume.html">Build Your Resume</a>
-                </article>
+                    <section class="levels">
 
-                <article>
-                    <h3>Interview Preparation</h3>
-                    <p>
-                        Practice interview questions and get help preparing
-                        for your next interview.
-                    </p>
-                    <a href="child-pages/chatbot.html">Practice Interviews</a>
-                </article>
+                        <article class="level feature">
+                            <span class="badge">1</span>
+                            <div class="level-body">
+                                <span class="tag">Start here</span>
+                                <h3>Resume Builder</h3>
+                                <p>
+                                    Build a professional resume and highlight your skills,
+                                    experience, and education.
+                                </p>
+                            </div>
+                            <a class="btn" href="child-pages/resume.html">Build Your Resume</a>
+                        </article>
 
-                <article>
-                    <h3>Find Jobs</h3>
-                    <p>
-                        Browse job opportunities and find positions that
-                        match your skills and interests.
-                    </p>
-                    <a href="child-pages/jobposting.html">View Job Postings</a>
-                </article>
-            </section>
+                        <article class="level">
+                            <span class="badge">2</span>
+                            <div class="level-body">
+                                <span class="tag">Level up</span>
+                                <h3>Interview Preparation</h3>
+                                <p>
+                                    Practice interview questions and get help preparing
+                                    for your next interview.
+                                </p>
+                            </div>
+                            <a class="more" href="child-pages/chatbot.html">Practice Interviews →</a>
+                        </article>
+
+                        <article class="level">
+                            <span class="badge">3</span>
+                            <div class="level-body">
+                                <span class="tag">Go get it</span>
+                                <h3>Find Jobs</h3>
+                                <p>
+                                    Browse job opportunities and find positions that
+                                    match your skills and interests.
+                                </p>
+                            </div>
+                            <a class="more" href="child-pages/jobposting.html">View Job Postings →</a>
+                        </article>
+
+                    </section>
+                </div>
+            </div>
+
+            <!-- LEVEL 3: CLOSING CALL TO ACTION -->
+            <div class="closing">
+                <div class="box">
+                    <h2>Not sure where to begin?</h2>
+                    <p>Start with your resume. It only takes a few minutes, and everything else gets easier.</p>
+                    <a class="btn" href="child-pages/resume.html">Build Your Resume</a>
+                </div>
+            </div>
+
         </main>
 
         <div id="footer-placeholder"></div>

@@ -1,31 +1,27 @@
+// Loads partials/footer.html into #footer-placeholder (see header.js for how the root is found).
+(function () {
+    const root = new URL('../', document.currentScript.src).href;
 
-document.addEventListener("DOMContentLoaded", async () => {
-    const footerContainer = document.getElementById("footer-placeholder");
+    async function loadFooter() {
+        const placeholder = document.getElementById('footer-placeholder');
+        if (!placeholder) return;
+        try {
+            const res = await fetch(root + 'partials/footer.html');
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const html = await res.text();
+            placeholder.innerHTML = html.replaceAll('{{root}}', root);
 
-    if (!footerContainer) return;
-
-    const basePath = "/hirehigher/";
-
-    try {
-        const response = await fetch(`${basePath}footer.html`);
-
-        if (!response.ok) {
-            throw new Error("Failed to load footer");
+            const href = root + 'css/partials/footer.css';
+            if (!document.querySelector('link[href="' + href + '"]')) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                document.head.appendChild(link);
+            }
+        } catch (err) {
+            console.error('Could not load footer:', err);
         }
-
-        const html = await response.text();
-        footerContainer.innerHTML = html;
-
-        // Load the footer stylesheet
-        if (!document.querySelector("#footer-stylesheet")) {
-            const link = document.createElement("link");
-            link.id = "footer-stylesheet";
-            link.rel = "stylesheet";
-            link.href = `${basePath}css/partials/footer.css`;
-            document.head.appendChild(link);
-        }
-
-    } catch (error) {
-        console.error("Error loading footer:", error);
     }
-});
+
+    loadFooter();
+})();

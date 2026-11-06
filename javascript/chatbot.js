@@ -34,14 +34,24 @@ function parseCoachReply(raw) {
     }
 }
 
-function addFace(msgDiv, score, tip) {
+function addReaction(beforeEl, score, tip) {
     if (!score) return;
     const { emoji, label } = FACES[score];
+
+    const row = document.createElement("div");
+    row.className = "reaction r" + score;
+
     const face = document.createElement("span");
-    face.className = "face";
+    face.className = "reaction-face";
     face.textContent = emoji;
-    face.title = tip ? `${label}: ${tip}` : label;
-    msgDiv.appendChild(face);
+
+    const text = document.createElement("span");
+    text.className = "reaction-text";
+    text.textContent = tip ? `${label} - ${tip}` : label;
+
+    row.append(face, text);
+    log.insertBefore(row, beforeEl); // goes right above the coach's reply
+    log.scrollTop = log.scrollHeight;
 }
 
 async function handleSend() {
@@ -59,8 +69,8 @@ async function handleSend() {
     const raw = await window.sendMessage(text);
     const { score, tip, reply } = parseCoachReply(raw);
 
-    thinking.textContent = reply;
-    addFace(myMsg, score, tip);                      
+        thinking.textContent = reply;
+        addReaction(thinking, score, tip);   // replaces addFace(myMsg, score, tip)                     
 
     sendBtn.disabled = false;
     input.focus();
