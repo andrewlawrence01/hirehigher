@@ -704,6 +704,14 @@ main > form:has(input[name="theme"]) label:has(input[value="neon"])::after {
         #0a0f14;
 }
 
+main > form:has(input[name="theme"]) label:has(input[value="red-black"])::after {
+    background:
+        linear-gradient(#e50925, #e50925) 6px 6px / 28px 6px no-repeat,
+        linear-gradient(#ff4d5a, #ff4d5a) 6px 16px / 40px 4px no-repeat,
+        linear-gradient(#b31225, #b31225) 6px 24px / 32px 4px no-repeat,
+        #0a0a0a;
+}
+
 main > form:has(input[name="theme"]) label:has(input[value="pink"])::after {
     background:
         linear-gradient(#ff5fae, #ff5fae) 6px 6px / 28px 6px no-repeat,

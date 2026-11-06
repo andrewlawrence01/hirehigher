@@ -84,3 +84,22 @@
     --placeholder-color: #6fa3ad;
     --gray-color: #000000;
 }
+
+
+:root[data-theme="red-black"] {
+    color-scheme: dark;
+
+    --primary-color: #e50925;
+    --secondary-color: #ff4d5a;
+
+    --text-color: #f5f5f5;
+    --background-color: #0a0a0a;
+
+    --border-top-color: #b31225;
+
+    --card-background: #171717;
+    --card-border: #383838;
+
+    --placeholder-color: #999999;
+    --gray-color: #000000;
+}
