@@ -1,23 +1,26 @@
-// ==========================================
-// Hire Higher - Authentication
-// Supabase Authentication
-// ==========================================
+// ============================================
+// SUPABASE CONFIGURATION
+// ============================================
 
-// Replace these with your actual Supabase credentials.
-const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-const SUPABASE_PUBLISHABLE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+const SUPABASE_URL = "https://oxxewesgoanhramereqef.supabase.co";
 
-// Initialize Supabase.
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable__uQDiyha0ZqotP70FSQp-Q_bKLHOoyq";
+
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
 );
 
-// Website URLs.
 const BASE_URL = "https://andrewlawrence01.github.io/hirehigher/";
 
-// Display messages on the page.
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+
 function showMessage(form, message, type = "error") {
+    if (!form) return;
+
     let messageElement = form.querySelector(".auth-message");
 
     if (!messageElement) {
@@ -31,15 +34,16 @@ function showMessage(form, message, type = "error") {
     messageElement.dataset.type = type;
 }
 
-// Disable a button while processing.
 function setLoading(button, loading, originalText) {
+    if (!button) return;
+
     button.disabled = loading;
     button.textContent = loading ? "Please wait..." : originalText;
 }
 
-// ==========================================
+// ============================================
 // SIGN UP
-// ==========================================
+// ============================================
 
 const signupForm = document.getElementById("signup-form");
 
@@ -62,12 +66,18 @@ if (signupForm) {
         }
 
         if (password.length < 8) {
-            showMessage(signupForm, "Your password must contain at least 8 characters.");
+            showMessage(
+                signupForm,
+                "Your password must contain at least 8 characters."
+            );
             return;
         }
 
         if (!document.getElementById("terms").checked) {
-            showMessage(signupForm, "Please agree to the Terms and Privacy Policy.");
+            showMessage(
+                signupForm,
+                "Please agree to the Terms and Privacy Policy."
+            );
             return;
         }
 
@@ -75,8 +85,8 @@ if (signupForm) {
 
         try {
             const { data, error } = await supabaseClient.auth.signUp({
-                email: email,
-                password: password,
+                email,
+                password,
                 options: {
                     data: {
                         first_name: firstName,
@@ -96,7 +106,8 @@ if (signupForm) {
                 );
 
                 setTimeout(() => {
-                    window.location.href = BASE_URL + "child-pages/profile.html";
+                    window.location.href =
+                        BASE_URL + "child-pages/profile.html";
                 }, 1500);
             } else {
                 showMessage(
@@ -104,25 +115,18 @@ if (signupForm) {
                     "Account created! Please check your email to confirm your account.",
                     "success"
                 );
-
-                button.disabled = true;
             }
-
         } catch (error) {
             showMessage(signupForm, error.message);
         } finally {
-            if (button.disabled !== true || !button.textContent.includes("Please wait")) {
-                button.textContent = originalText;
-            } else {
-                button.textContent = originalText;
-            }
+            setLoading(button, false, originalText);
         }
     });
 }
 
-// ==========================================
+// ============================================
 // SIGN IN
-// ==========================================
+// ============================================
 
 const signinForm = document.getElementById("signin-form");
 
@@ -139,35 +143,40 @@ if (signinForm) {
         setLoading(button, true, originalText);
 
         try {
-            const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
 
             if (error) throw error;
 
-            showMessage(signinForm, "Sign in successful! Welcome back.", "success");
+            showMessage(
+                signinForm,
+                "Sign in successful! Welcome back.",
+                "success"
+            );
 
             setTimeout(() => {
-                window.location.href = BASE_URL + "child-pages/profile.html";
+                window.location.href =
+                    BASE_URL + "child-pages/profile.html";
             }, 1000);
 
         } catch (error) {
             showMessage(signinForm, error.message);
         } finally {
-            button.disabled = false;
-            button.textContent = originalText;
+            setLoading(button, false, originalText);
         }
     });
 }
 
-// ==========================================
+// ============================================
 // FORGOT PASSWORD
-// ==========================================
+// ============================================
 
 const forgotPasswordLink = document.querySelector(".forgot-password");
 
-if (forgotPasswordLink) {
+if (forgotPasswordLink && signinForm) {
     forgotPasswordLink.addEventListener("click", async (event) => {
         event.preventDefault();
 
@@ -175,18 +184,20 @@ if (forgotPasswordLink) {
         const email = emailInput.value.trim();
 
         if (!email) {
-            showMessage(signinForm, "Please enter your email address first.");
+            showMessage(
+                signinForm,
+                "Please enter your email address first."
+            );
+
             emailInput.focus();
             return;
         }
 
         try {
-            const { error } = await supabaseClient.auth.resetPasswordForEmail(
-                email,
-                {
+            const { error } =
+                await supabaseClient.auth.resetPasswordForEmail(email, {
                     redirectTo: BASE_URL + "signin.html?reset=true"
-                }
-            );
+                });
 
             if (error) throw error;
 
@@ -202,9 +213,9 @@ if (forgotPasswordLink) {
     });
 }
 
-// ==========================================
-// SESSION CHECK
-// ==========================================
+// ============================================
+// CHECK AUTHENTICATION SESSION
+// ============================================
 
 async function checkAuthSession() {
     const { data, error } = await supabaseClient.auth.getSession();
@@ -215,7 +226,10 @@ async function checkAuthSession() {
     }
 
     if (data.session) {
-        console.log("Currently signed in:", data.session.user.email);
+        console.log(
+            "Currently signed in:",
+            data.session.user.email
+        );
     } else {
         console.log("No active user session.");
     }
