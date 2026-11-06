@@ -915,3 +915,144 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     padding: .1rem 0 .1rem .6rem;
     letter-spacing: .1em;
 }
+
+.signin-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.signin-prompt p {
+    margin: 0;
+}
+
+/* Signup page vertical layout */
+.auth-page .auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Signup form occupies its own full row */
+.auth-page .auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* Sign-in prompt appears underneath the signup form */
+.auth-page .signin-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+    text-align: center;
+    gap: 12px;
+}
+
+.auth-page .signin-prompt p {
+    margin: 0;
+}
+
+.auth-page .signin-prompt a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Keep Create Account button from stretching */
+.auth-form .auth-button {
+    display: block;
+    width: fit-content;
+    min-width: 180px;
+    align-self: center;
+    padding: 14px 32px;
+}
+
+
+/* Primary Authentication Button */
+.auth-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    min-height: 58px;
+    box-sizing: border-box;
+    padding: 14px 20px;
+
+    border: 3px solid var(--border-top-color);
+    border-radius: 40px;
+
+    background-color: var(--primary-color);
+    color: var(--background-color);
+
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+    box-shadow: 0 5px 0 var(--border-top-color);
+
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Secondary Authentication Button */
+.auth-secondary-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    min-height: 58px;
+    box-sizing: border-box;
+    padding: 14px 20px;
+
+    border: 3px solid var(--border-top-color);
+    border-radius: 40px;
+
+    background-color: var(--card-background);
+    color: var(--text-color);
+
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    cursor: pointer;
+    box-shadow: 0 5px 0 var(--border-top-color);
+
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Button Hover */
+.auth-button:hover,
+.auth-secondary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 var(--border-top-color);
+}
+
+/* Button Press */
+.auth-button:active,
+.auth-secondary-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 var(--border-top-color);
+}
+
+/* Disabled Button */
+.auth-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
