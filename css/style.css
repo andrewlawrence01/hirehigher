@@ -39,6 +39,7 @@ a {
 [data-theme="dark"] .logo,
 [data-theme="forest"] .logo,
 [data-theme="grape"] .logo,
+[data-theme="red-black"] .logo,
 [data-theme="neon"] .logo {
     content: url("/images/DarkMode.png");
 }
@@ -794,4 +795,123 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     main > form:has(input[name="theme"]) label::after {
         width: 44px;
     }
+}
+
+/* Signup and Signin Form Fields */
+#signup-form input[type="text"],
+#signup-form input[type="email"],
+#signup-form input[type="password"],
+#signin-form input[type="email"],
+#signin-form input[type="password"] {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 20px;
+    border: 2px solid #123f63;
+    border-radius: 16px;
+    background-color: #ffffff;
+    color: #111111;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input Placeholder */
+#signup-form input::placeholder,
+#signin-form input::placeholder {
+    color: #8294a8;
+    opacity: 1;
+}
+
+/* Input Focus */
+#signup-form input:focus,
+#signin-form input:focus {
+    border-color: #3295ed;
+    box-shadow: 0 0 0 3px rgba(50, 149, 237, 0.15);
+}
+
+/* Main Authentication Button */
+.auth-button {
+    min-height: 58px;
+    padding: 14px 32px;
+    border: 3px solid #123f63;
+    border-radius: 40px;
+    background-color: #39f52b;
+    color: #000000;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #123f63;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Button Hover */
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #123f63;
+}
+
+/* Button Press */
+.auth-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #123f63;
+}
+
+/* Disabled Button */
+.auth-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 5px 0 #123f63;
+}
+
+/* Secondary Button */
+.auth-secondary-button {
+    min-height: 58px;
+    padding: 14px 32px;
+    border: 3px solid #123f63;
+    border-radius: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #123f63;
+}
+
+.signin-prompt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.signin-prompt p {
+    margin: 0;
+}
+
+/* ---------- Resume style: Modern ---------- */
+#preview.tpl-modern .r-head {
+    background: var(--accent);
+    margin: -2.25rem -2.25rem 0;
+    padding: 1.75rem 2.25rem;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+}
+
+#preview.tpl-modern h1,
+#preview.tpl-modern .r-contact {
+    color: #fff;
+}
+
+#preview.tpl-modern h2 {
+    border-bottom: none;
+    border-left: 5px solid var(--accent);
+    padding: .1rem 0 .1rem .6rem;
+    letter-spacing: .1em;
 }

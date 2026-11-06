@@ -3,8 +3,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js";
+import { getFirestore, collection, addDoc, query, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBtciBVV4S0wmyhtg_Gqx3iNmoMOVIEChs",
     authDomain: "hirehigher-e3ae2.firebaseapp.com",
@@ -46,17 +47,76 @@ const model = getGenerativeModel(ai, {
     },
 });
 
-const chat = model.startChat();
+let chat = model.startChat();
+
+// ---------- SAVING CHATS ----------
+const db = getFirestore(app);
+let chatId = crypto.randomUUID();
+
+// This browser's list of past chats
+function getIndex() {
+  try { return JSON.parse(localStorage.getItem("chatIndex")) || []; }
+  catch { return []; }
+}
+
+function addToIndex(id, title) {
+  try {
+    const list = getIndex();
+    if (list.some(c => c.id === id)) return;
+    list.unshift({ id, title: title.slice(0, 40), createdAt: Date.now() });
+    localStorage.setItem("chatIndex", JSON.stringify(list.slice(0, 50)));
+  } catch (e) {}
+}
+
+async function saveMessage(role, text) {
+  try {
+    await addDoc(collection(db, "chats", chatId, "messages"), {
+      role,
+      text,
+      createdAt: serverTimestamp(),
+    });
+  } catch (e) {
+    console.error("Save failed", e);
+  }
+}
 
 async function sendMessage(text) {
+  const userText = text.slice(0, 2000);
+  addToIndex(chatId, userText);
+  saveMessage("user", userText);
   try {
-    const result = await chat.sendMessage(text.slice(0, 2000));
-    return result.response.text();
+    const result = await chat.sendMessage(userText);
+    const reply = result.response.text();
+    saveMessage("model", reply);
+    return reply;
   } catch (e) {
     console.error(e);
     return "The coach is busy right now. Please try again in a few minutes.";
   }
 }
 
-// Makes the function available to the rest of your site
+// ---------- PAST CHATS ----------
+window.getPastChats = getIndex;
+
+window.newChat = () => {
+  chatId = crypto.randomUUID();
+  chat = model.startChat();
+};
+
+window.openChat = async (id) => {
+  try {
+    const q = query(collection(db, "chats", id, "messages"), orderBy("createdAt"));
+    const snap = await getDocs(q);
+    const msgs = snap.docs.map(d => ({ role: d.data().role, text: d.data().text }));
+    chat = model.startChat({
+      history: msgs.map(m => ({ role: m.role, parts: [{ text: m.text }] })),
+    });
+    chatId = id;
+    return msgs;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
+
 window.sendMessage = sendMessage;

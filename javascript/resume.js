@@ -1,5 +1,5 @@
 const KEY = "resumeV2";
-const FIELDS = ["name", "email", "phone", "location", "link", "summary", "skills", "accent"];
+const FIELDS = ["name", "email", "phone", "location", "link", "summary", "skills", "accent", "template"];
 const ACCENTS = { navy: "#0e3a60", forest: "#1d5a33", plum: "#6b2d8f", rose: "#b0245f", slate: "#333a44" };
 
 const KINDS = {
@@ -113,6 +113,7 @@ function collect() {
 function render(v) {
   preview.replaceChildren();
   preview.style.setProperty("--accent", ACCENTS[v.accent] || ACCENTS.navy);
+  preview.className = "tpl-" + (v.template || "classic");
 
   const jobs = v.jobs.filter(hasText);
   const schools = v.schools.filter(hasText);
@@ -172,7 +173,7 @@ function render(v) {
 function update() {
   const data = collect();
   render(data);
-  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch {}
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { }
 }
 
 // Pull in a resume saved by the older, simpler version of this page
@@ -193,7 +194,7 @@ function migrateOld() {
 
 function load() {
   let saved = null;
-  try { saved = JSON.parse(localStorage.getItem(KEY) || "null"); } catch {}
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { }
   if (!saved) saved = migrateOld() || {};
   FIELDS.forEach((id) => { if (typeof saved[id] === "string") el(id).value = saved[id]; });
   setEntries("jobs", Array.isArray(saved.jobs) && saved.jobs.length ? saved.jobs : [{}]);
