@@ -38,6 +38,7 @@ main.home .btn {
     font-size: 1.05rem;
     padding: .9rem 1.8rem;
 }
+
 main.home .btn.ghost {
     background: transparent;
     color: var(--text-color);
@@ -82,7 +83,11 @@ main.home .hero h2 {
     font-weight: 900;
     letter-spacing: -.03em;
 }
-main.home .hero h2 em { font-style: normal; color: var(--primary-color); }
+
+main.home .hero h2 em {
+    font-style: normal;
+    color: var(--primary-color);
+}
 
 main.home .hero p {
     margin: 22px 0 0;
@@ -99,7 +104,10 @@ main.home .hero-cta {
 }
 
 /* decorative resume card + floating chips */
-main.home .visual { position: relative; height: 400px; }
+main.home .visual {
+    position: relative;
+    height: 400px;
+}
 
 main.home .doc {
     position: absolute;
@@ -111,20 +119,45 @@ main.home .doc {
     box-shadow: 0 6px 0 var(--border-top-color), 0 28px 50px var(--h-shadow);
     transform: rotate(-3deg);
 }
+
 main.home .doc .avatar {
-    width: 54px; height: 54px; border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border: 3px solid var(--border-top-color);
 }
+
 main.home .doc .bar {
-    height: 11px; border-radius: 6px; margin-top: 14px;
+    height: 11px;
+    border-radius: 6px;
+    margin-top: 14px;
     background: var(--card-border);
 }
-main.home .doc .bar.w1 { width: 62%; margin-top: 18px; background: color-mix(in srgb, var(--primary-color) 60%, var(--card-background)); }
-main.home .doc .bar.w2 { width: 90%; }
-main.home .doc .bar.w3 { width: 78%; }
-main.home .doc .bar.w4 { width: 84%; }
-main.home .doc .bar.w5 { width: 50%; margin-top: 28px; background: color-mix(in srgb, var(--primary-color) 60%, var(--card-background)); }
+
+main.home .doc .bar.w1 {
+    width: 62%;
+    margin-top: 18px;
+    background: color-mix(in srgb, var(--primary-color) 60%, var(--card-background));
+}
+
+main.home .doc .bar.w2 {
+    width: 90%;
+}
+
+main.home .doc .bar.w3 {
+    width: 78%;
+}
+
+main.home .doc .bar.w4 {
+    width: 84%;
+}
+
+main.home .doc .bar.w5 {
+    width: 50%;
+    margin-top: 28px;
+    background: color-mix(in srgb, var(--primary-color) 60%, var(--card-background));
+}
 
 main.home .chip {
     position: absolute;
@@ -138,11 +171,29 @@ main.home .chip {
     box-shadow: 0 4px 0 var(--border-top-color);
     animation: home-float 5s ease-in-out infinite;
 }
-main.home .chip.c1 { top: 0; right: 0; }
-main.home .chip.c2 { bottom: 70px; left: -14px; animation-delay: -1.6s; }
-main.home .chip.c3 { bottom: 0; right: 14px; animation-delay: -3.2s; }
 
-@keyframes home-float { 50% { transform: translateY(-10px); } }
+main.home .chip.c1 {
+    top: 0;
+    right: 0;
+}
+
+main.home .chip.c2 {
+    bottom: 70px;
+    left: -14px;
+    animation-delay: -1.6s;
+}
+
+main.home .chip.c3 {
+    bottom: 0;
+    right: 14px;
+    animation-delay: -3.2s;
+}
+
+@keyframes home-float {
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
 /* =========================================================
    LEVEL 2: CHOOSE YOUR LEVEL
@@ -153,9 +204,18 @@ main.home .path-band {
     border-bottom: 2px solid var(--card-border);
     padding: 90px 24px;
 }
-main.home .path-inner { max-width: 1000px; margin: 0 auto; }
 
-main.home .section-head { text-align: center; max-width: 620px; margin: 0 auto 60px; }
+main.home .path-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+main.home .section-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 60px;
+}
+
 main.home .section-head h2 {
     margin: 0;
     font-size: clamp(1.9rem, 3.6vw, 2.7rem);
@@ -163,7 +223,12 @@ main.home .section-head h2 {
     letter-spacing: -.02em;
     line-height: 1.15;
 }
-main.home .section-head p { margin: 14px 0 0; color: var(--h-muted); font-size: 1.1rem; }
+
+main.home .section-head p {
+    margin: 14px 0 0;
+    color: var(--h-muted);
+    font-size: 1.1rem;
+}
 
 /* this is a <section>, so reset the global flex-wrap section rules */
 main.home .levels {
@@ -178,11 +243,14 @@ main.home .levels {
     padding: 0;
     text-align: left;
 }
+
 /* dotted rail connecting the badges */
 main.home .levels::before {
     content: "";
     position: absolute;
-    left: 39px; top: 40px; bottom: 40px;
+    left: 39px;
+    top: 40px;
+    bottom: 40px;
     width: 3px;
     background: repeating-linear-gradient(to bottom, var(--border-top-color) 0 10px, transparent 10px 20px);
     opacity: .55;
@@ -206,6 +274,7 @@ main.home .level {
     box-shadow: 0 6px 12px var(--h-shadow);
     transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
+
 main.home .level:hover {
     transform: translateX(8px);
     border-color: var(--primary-color);
@@ -214,10 +283,13 @@ main.home .level:hover {
 
 main.home .badge {
     justify-self: center;
-    width: 60px; height: 60px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    display: grid; place-items: center;
-    font-weight: 900; font-size: 1.5rem;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 1.5rem;
     background: var(--secondary-color);
     color: #000;
     border: 3px solid var(--border-top-color);
@@ -225,24 +297,39 @@ main.home .badge {
 }
 
 main.home .tag {
-    font-size: .8rem; font-weight: 800;
-    letter-spacing: .12em; text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
     color: var(--h-accent-text);
 }
+
 main.home .level h3 {
     margin: 2px 0 6px;
-    font-size: 1.55rem; font-weight: 800; line-height: 1.2;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.2;
     color: var(--text-color);
 }
-main.home .level p { margin: 0; flex: none; color: var(--h-muted); max-width: 36em; }
+
+main.home .level p {
+    margin: 0;
+    flex: none;
+    color: var(--h-muted);
+    max-width: 36em;
+}
 
 /* step 1 stands out */
 main.home .level.feature {
-    padding-top: 40px; padding-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     border-color: var(--primary-color);
     background: linear-gradient(120deg, color-mix(in srgb, var(--primary-color) 16%, var(--background-color)), var(--background-color));
 }
-main.home .level.feature h3 { font-size: 1.9rem; }
+
+main.home .level.feature h3 {
+    font-size: 1.9rem;
+}
 
 /* steps 2 and 3: quiet text link (undo the global `article a` button look) */
 main.home .level .more {
@@ -256,8 +343,16 @@ main.home .level .more {
     font: 800 1.05rem var(--font-body);
     white-space: nowrap;
 }
-main.home .level .more:hover { transform: none; text-decoration: underline; }
-main.home .level .more:active { transform: none; box-shadow: none; }
+
+main.home .level .more:hover {
+    transform: none;
+    text-decoration: underline;
+}
+
+main.home .level .more:active {
+    transform: none;
+    box-shadow: none;
+}
 
 /* make the WHOLE row clickable using its existing link */
 main.home .level .more::after,
@@ -271,7 +366,13 @@ main.home .level .btn::after {
 /* =========================================================
    LEVEL 3: CLOSING CTA
    ========================================================= */
-main.home .closing { max-width: 1000px; margin: 0 auto; padding: 90px 24px; text-align: center; }
+main.home .closing {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 90px 24px;
+    text-align: center;
+}
+
 main.home .closing .box {
     position: relative;
     overflow: hidden;
@@ -281,14 +382,18 @@ main.home .closing .box {
     padding: 64px 24px;
     box-shadow: 0 6px 0 var(--border-top-color);
 }
+
 main.home .closing .box::after {
     content: "";
     position: absolute;
-    width: 380px; height: 380px;
-    right: -100px; top: -140px;
+    width: 380px;
+    height: 380px;
+    right: -100px;
+    top: -140px;
     background: radial-gradient(circle, color-mix(in srgb, var(--secondary-color) 30%, transparent), transparent 70%);
     pointer-events: none;
 }
+
 main.home .closing h2 {
     position: relative;
     margin: 0;
@@ -296,17 +401,51 @@ main.home .closing h2 {
     font-weight: 900;
     letter-spacing: -.02em;
 }
-main.home .closing p { position: relative; margin: 12px 0 30px; color: var(--h-muted); }
-main.home .closing .btn { position: relative; }
+
+main.home .closing p {
+    position: relative;
+    margin: 12px 0 30px;
+    color: var(--h-muted);
+}
+
+main.home .closing .btn {
+    position: relative;
+}
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 860px) {
-    main.home .hero { grid-template-columns: 1fr; padding-top: 56px; padding-bottom: 72px; gap: 32px; }
-    main.home .visual { height: 300px; }
-    main.home .levels::before { display: none; }
-    main.home .level { grid-template-columns: 1fr; gap: 14px; padding: 26px; }
-    main.home .level:hover { transform: none; }
-    main.home .badge { justify-self: start; }
+    main.home .hero {
+        grid-template-columns: 1fr;
+        padding-top: 56px;
+        padding-bottom: 72px;
+        gap: 32px;
+    }
+
+    main.home .visual {
+        height: 300px;
+    }
+
+    main.home .levels::before {
+        display: none;
+    }
+
+    main.home .level {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 26px;
+    }
+
+    main.home .level:hover {
+        transform: none;
+    }
+
+    main.home .badge {
+        justify-self: start;
+    }
+
+    main.home .doc .bar.w3 {
+        display: none;
+    }
 }

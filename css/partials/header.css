@@ -91,3 +91,9 @@ header nav a:hover {
 #hamburger-menu h2 {
     margin: 0;
 }
+
+@media (max-width: 900px) {
+    #hamburger-menu{
+        width: 30%;
+    }
+}
