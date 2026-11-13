@@ -2,15 +2,6 @@ const log = document.getElementById("chatLog");
 const input = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
 
-function addMessage(text, who) {
-    const div = document.createElement("div");
-    div.className = "msg " + who;
-    div.textContent = text; // textContent keeps this safe from injected HTML
-    log.appendChild(div);
-    log.scrollTop = log.scrollHeight;
-    return div;
-}
-
 const FACES = {
     1: { emoji: "😞", label: "Needs work" },
     2: { emoji: "🙁", label: "Weak" },
@@ -18,6 +9,44 @@ const FACES = {
     4: { emoji: "🙂", label: "Good" },
     5: { emoji: "😄", label: "Great" },
 };
+
+// ---------- building elements ----------
+function createMessageEl(text, who) {
+    const div = document.createElement("div");
+    div.className = "msg " + who;
+    div.textContent = text; // textContent keeps this safe from injected HTML
+    return div;
+}
+
+function createReactionEl(score, tip) {
+    const { emoji, label } = FACES[score];
+    const row = document.createElement("div");
+    row.className = "reaction r" + score;
+
+    const face = document.createElement("span");
+    face.className = "reaction-face";
+    face.textContent = emoji;
+
+    const text = document.createElement("span");
+    text.className = "reaction-text";
+    text.textContent = tip ? `${label} - ${tip}` : label;
+
+    row.append(face, text);
+    return row;
+}
+
+function addMessage(text, who) {
+    const div = createMessageEl(text, who);
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+    return div;
+}
+
+function addReaction(beforeEl, score, tip) {
+    if (!score) return;
+    log.insertBefore(createReactionEl(score, tip), beforeEl);
+    log.scrollTop = log.scrollHeight;
+}
 
 function parseCoachReply(raw) {
     try {
@@ -34,26 +63,56 @@ function parseCoachReply(raw) {
     }
 }
 
-function addReaction(beforeEl, score, tip) {
-    if (!score) return;
-    const { emoji, label } = FACES[score];
-
-    const row = document.createElement("div");
-    row.className = "reaction r" + score;
-
-    const face = document.createElement("span");
-    face.className = "reaction-face";
-    face.textContent = emoji;
-
-    const text = document.createElement("span");
-    text.className = "reaction-text";
-    text.textContent = tip ? `${label} - ${tip}` : label;
-
-    row.append(face, text);
-    log.insertBefore(row, beforeEl); // goes right above the coach's reply
-    log.scrollTop = log.scrollHeight;
+// ---------- past chats ----------
+function renderSaved(msgs) {
+    const frag = document.createDocumentFragment();
+    for (const m of msgs) {
+        if (m.role === "user") {
+            frag.appendChild(createMessageEl(m.text, "you"));
+        } else {
+            const { score, tip, reply } = parseCoachReply(m.text);
+            if (score) frag.appendChild(createReactionEl(score, tip));
+            frag.appendChild(createMessageEl(reply, "coach"));
+        }
+    }
+    return frag;
 }
 
+let activeChat = null;
+
+async function openPastChat(id) {
+    const msgs = await window.openChat(id); // also restores the AI's memory
+    activeChat = id;
+    log.innerHTML = "";
+    log.appendChild(renderSaved(msgs));
+    log.scrollTop = log.scrollHeight;
+    refreshChatList();
+}
+
+function refreshChatList() {
+    const list = document.getElementById("chatList");
+    if (!list) return;
+    list.innerHTML = "";
+    for (const c of window.getPastChats?.() || []) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn small";
+        btn.textContent = c.title || "Untitled";
+        if (c.id === activeChat) btn.classList.add("active");
+        btn.onclick = () => openPastChat(c.id);
+        list.appendChild(btn);
+    }
+}
+
+document.getElementById("newChatBtn").addEventListener("click", () => {
+    window.newChat();
+    activeChat = null;
+    log.innerHTML = "";
+    addMessage("Hi! I'm your interview coach. What job are you interviewing for?", "coach");
+    refreshChatList();
+});
+
+// ---------- sending ----------
 async function handleSend() {
     const text = input.value.trim();
     if (!text) return;
@@ -62,18 +121,22 @@ async function handleSend() {
         return;
     }
     input.value = "";
-    const myMsg = addMessage(text, "you");       
+    addMessage(text, "you");
     sendBtn.disabled = true;
     const thinking = addMessage("Thinking...", "coach");
 
     const raw = await window.sendMessage(text);
     const { score, tip, reply } = parseCoachReply(raw);
 
-        thinking.textContent = reply;
-        addReaction(thinking, score, tip);   // replaces addFace(myMsg, score, tip)                     
+    thinking.textContent = reply;
+    addReaction(thinking, score, tip);
 
     sendBtn.disabled = false;
     input.focus();
+
+    // the chat gets added to the list on its first message
+    activeChat = activeChat || (window.getPastChats?.()[0]?.id ?? null);
+    refreshChatList();
 }
 
 sendBtn.addEventListener("click", handleSend);
@@ -85,3 +148,4 @@ input.addEventListener("keydown", (e) => {
 });
 
 addMessage("Hi! I'm your interview coach. What job are you interviewing for?", "coach");
+window.addEventListener("load", refreshChatList);

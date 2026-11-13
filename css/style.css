@@ -775,6 +775,18 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     gap: 0.5rem;
 }
 
+.chat-wrap { display: flex; gap: 16px; align-items: flex-start; }
+.chat-sidebar { width: 200px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
+.chat-main { flex: 1; min-width: 0; }
+#chatList { display: flex; flex-direction: column; gap: 6px; max-height: 420px; overflow-y: auto; }
+#chatList button { text-align: left; }
+#chatList button.active { font-weight: bold; }
+
+@media (max-width: 700px) {
+    .chat-wrap { flex-direction: column; }
+    .chat-sidebar { width: 100%; }
+}
+
 /* MEDIA STYLES */
 
 @keyframes pop {
