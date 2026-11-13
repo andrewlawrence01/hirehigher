@@ -236,3 +236,230 @@ async function checkAuthSession() {
 }
 
 checkAuthSession();
+
+
+// ============================================
+// PROFILE PAGE AND PHOTO UPLOAD
+// ============================================
+
+const profileForm = document.getElementById("profile-form");
+
+if (profileForm) {
+
+    const photoInput = document.getElementById("profile-photo");
+    const photoPreview = document.getElementById("profile-photo-preview");
+    const photoPlaceholder = document.getElementById("profile-photo-placeholder");
+
+    let currentUser = null;
+    let selectedPhoto = null;
+
+    // Display a profile photo
+    function displayProfilePhoto(url) {
+        if (!url) {
+            photoPreview.hidden = true;
+            photoPlaceholder.hidden = false;
+            photoPreview.removeAttribute("src");
+            return;
+        }
+
+        photoPreview.src = url;
+        photoPreview.hidden = false;
+        photoPlaceholder.hidden = true;
+    }
+
+    // Load the user's profile
+    async function loadProfile() {
+        try {
+            const { data: { user }, error: userError } =
+                await supabaseClient.auth.getUser();
+
+            if (userError || !user) {
+                window.location.href = BASE_URL + "signin.html";
+                return;
+            }
+
+            currentUser = user;
+
+            const { data, error } = await supabaseClient
+                .from("profiles")
+                .select("*")
+                .eq("id", user.id)
+                .maybeSingle();
+
+            if (error) throw error;
+
+            document.getElementById("profile-name").value =
+                data?.full_name ||
+                [
+                    user.user_metadata?.first_name,
+                    user.user_metadata?.last_name
+                ].filter(Boolean).join(" ") || "";
+
+            document.getElementById("profile-email").value =
+                user.email || "";
+
+            document.getElementById("profile-location").value =
+                data?.location || "";
+
+            document.getElementById("profile-bio").value =
+                data?.bio || "";
+
+            if (data?.avatar_url) {
+                displayProfilePhoto(data.avatar_url);
+            }
+
+        } catch (error) {
+            console.error("Profile loading error:", error);
+            showMessage(profileForm, error.message);
+        }
+    }
+
+    // Preview selected photo
+    photoInput.addEventListener("change", () => {
+        const file = photoInput.files[0];
+
+        if (!file) return;
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+        if (!allowedTypes.includes(file.type)) {
+            showMessage(
+                profileForm,
+                "Please choose a JPG, PNG, or WebP image."
+            );
+            photoInput.value = "";
+            selectedPhoto = null;
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            showMessage(
+                profileForm,
+                "Your profile photo must be smaller than 5 MB."
+            );
+            photoInput.value = "";
+            selectedPhoto = null;
+            return;
+        }
+
+        selectedPhoto = file;
+
+        const previewURL = URL.createObjectURL(file);
+        displayProfilePhoto(previewURL);
+    });
+
+    // Upload profile photo to Supabase Storage
+    async function uploadProfilePhoto() {
+        if (!selectedPhoto) return null;
+
+        const extension = {
+            "image/jpeg": "jpg",
+            "image/png": "png",
+            "image/webp": "webp"
+        }[selectedPhoto.type];
+
+        const filePath = `${currentUser.id}/avatar.${extension}`;
+
+        const { error: uploadError } = await supabaseClient
+            .storage
+            .from("profile-photos")
+            .upload(filePath, selectedPhoto, {
+                upsert: true,
+                contentType: selectedPhoto.type
+            });
+
+        if (uploadError) throw uploadError;
+
+        const { data } = supabaseClient
+            .storage
+            .from("profile-photos")
+            .getPublicUrl(filePath);
+
+        return data.publicUrl;
+    }
+
+    // Save profile information
+    profileForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!currentUser) return;
+
+        const button = profileForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        const originalText = button.textContent;
+
+        setLoading(button, true, originalText);
+
+        try {
+            let avatarURL = null;
+
+            // Preserve existing photo unless a new one is selected
+            const { data: existingProfile, error: existingError } =
+                await supabaseClient
+                    .from("profiles")
+                    .select("avatar_url")
+                    .eq("id", currentUser.id)
+                    .maybeSingle();
+
+            if (existingError) throw existingError;
+
+            avatarURL = existingProfile?.avatar_url || null;
+
+            // Upload a new photo if selected
+            if (selectedPhoto) {
+                avatarURL = await uploadProfilePhoto();
+            }
+
+            const profileData = {
+                id: currentUser.id,
+                full_name: document.getElementById("profile-name").value.trim(),
+                email: currentUser.email,
+                location: document.getElementById("profile-location").value.trim(),
+                bio: document.getElementById("profile-bio").value.trim(),
+                avatar_url: avatarURL,
+                updated_at: new Date().toISOString()
+            };
+
+            const { error } = await supabaseClient
+                .from("profiles")
+                .upsert(profileData, {
+                    onConflict: "id"
+                });
+
+            if (error) throw error;
+
+            selectedPhoto = null;
+            photoInput.value = "";
+
+            showMessage(
+                profileForm,
+                "Your profile has been saved successfully!",
+                "success"
+            );
+
+            if (avatarURL) {
+                displayProfilePhoto(avatarURL);
+            }
+
+        } catch (error) {
+            console.error("Profile save error:", error);
+
+            showMessage(
+                profileForm,
+                error.message
+            );
+
+        } finally {
+            setLoading(button, false, originalText);
+        }
+    });
+
+    // Initialize profile page
+    loadProfile();
+}
