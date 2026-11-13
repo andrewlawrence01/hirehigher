@@ -108,8 +108,12 @@ window.openChat = async (id) => {
     const q = query(collection(db, "chats", id, "messages"), orderBy("createdAt"));
     const snap = await getDocs(q);
     const msgs = snap.docs.map(d => ({ role: d.data().role, text: d.data().text }));
+
+    const hist = [...msgs];
+    if (hist.length && hist[hist.length - 1].role === "user") hist.pop();
+
     chat = model.startChat({
-      history: msgs.map(m => ({ role: m.role, parts: [{ text: m.text }] })),
+      history: hist.map(m => ({ role: m.role, parts: [{ text: m.text }] })),
     });
     chatId = id;
     return msgs;
