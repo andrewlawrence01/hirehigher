@@ -1056,3 +1056,180 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     cursor: not-allowed;
     transform: none;
 }
+
+/* Improve spacing between signup form fields */
+.auth-form .form-group {
+    margin-bottom: 18px;
+}
+
+/* Space between field labels and input boxes */
+.auth-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Keep password instructions comfortably spaced */
+.auth-form .form-group small {
+    display: block;
+    margin-top: 8px;
+}
+
+/* Add breathing room before the terms checkbox */
+.auth-form .form-options {
+    margin-top: 8px;
+    margin-bottom: 18px;
+}
+
+
+/* Align form labels to the left side of input fields */
+.auth-form .form-group {
+    text-align: left;
+}
+
+.auth-form .form-group label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    padding-left: 2px;
+}
+
+/* Align and underline form labels */
+.auth-form .form-group label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    padding-left: 2px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Theme-aware form labels */
+.auth-form .form-group label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    padding-left: 2px;
+
+    color: var(--text-color);
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color);
+    text-underline-offset: 4px;
+}
+
+/* Theme-aware form labels */
+.auth-form .form-group label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    padding-left: 2px;
+
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color);
+    text-underline-offset: 4px;
+}
+
+
+/* Theme-aware authentication page text */
+
+/* Main headings */
+.auth-header h1 {
+    color: var(--text-color);
+}
+
+/* Descriptive text */
+.auth-header p {
+    color: var(--text-color);
+}
+
+/* Form labels */
+.auth-form .form-group label {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color);
+    text-underline-offset: 4px;
+}
+
+/* Password instructions */
+.auth-form .form-group small {
+    color: var(--text-color);
+}
+
+/* Terms and conditions text */
+.auth-form .checkbox-label {
+    color: var(--text-color);
+}
+
+/* Privacy Policy and other links */
+.auth-form a,
+.signin-prompt a {
+    color: var(--primary-color);
+}
+
+/* Already have an account? */
+.signin-prompt p {
+    color: var(--text-color);
+}
+
+/* Authentication messages */
+.auth-message {
+    color: var(--text-color);
+}
+
+/* Smooth theme transitions */
+.auth-page {
+    color: var(--text-color);
+}
+
+/* Theme-aware authentication headings */
+.auth-page .auth-header h1 {
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+}
+
+.auth-page .auth-header p {
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
+
+/* Authentication page heading and subtitle */
+.auth-page .auth-container .auth-header h1 {
+    color: var(--primary-color);
+}
+
+.auth-page .auth-container .auth-header p {
+    color: var(--text-color);
+}
+
+/* Theme-aware authentication subtitle */
+.auth-page .auth-header p {
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+}
+/* Force Red-Black theme subtitle color */
+html[data-theme="red-black"] .auth-page .auth-container .auth-header p {
+    color: #e50925 !important;
+}
+
+/* Red-Black theme: Already have an account? */
+html[data-theme="red-black"] .auth-page .signin-prompt p {
+    color: #e50925 !important;
+}
+
+/* Theme-aware header text */
+#header-placeholder header,
+#header-placeholder header a,
+#header-placeholder header nav a {
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
+
+/* Header hover effects */
+#header-placeholder header a:hover,
+#header-placeholder header nav a:hover {
+    color: var(--primary-color);
+}
