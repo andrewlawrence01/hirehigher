@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hire Higher - Profile</title>
+
     <script src="../javascript/theme.js"></script>
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/theme.css">
+
     <script src="../javascript/header.js" defer></script>
     <script src="../javascript/footer.js" defer></script>
+
     <link rel="icon" type="image/x-icon" href="../images/HireHigher.png">
 </head>
 
@@ -20,27 +24,85 @@
         <div id="header-placeholder"></div>
 
         <main class="profile-page">
+
             <h1>Profile</h1>
 
-            <form action="#" method="post">
+            <form id="profile-form">
+
+                <!-- Profile Photo -->
+                <div class="profile-photo-section">
+
+                    <div class="profile-photo-preview">
+                        <img
+                            id="profile-photo-preview"
+                            alt="Profile photo preview"
+                            hidden
+                        >
+
+                        <span id="profile-photo-placeholder">
+                            <span class="profile-photo-icon">👤</span>
+                        </span>
+                    </div>
+
+                    <label for="profile-photo" class="profile-photo-button">
+                        Choose Profile Photo
+                    </label>
+
+                    <input
+                        type="file"
+                        id="profile-photo"
+                        name="profilePhoto"
+                        accept="image/png, image/jpeg, image/webp"
+                        hidden
+                    >
+
+                    <small>
+                        JPG, PNG, or WebP. Maximum file size: 5 MB.
+                    </small>
+
+                </div>
+
+                <!-- Full Name -->
                 <label for="profile-name">Full Name</label>
-                <input type="text" id="profile-name" name="name">
+                <input
+                    type="text"
+                    id="profile-name"
+                    name="name"
+                >
 
+                <!-- Email -->
                 <label for="profile-email">Email</label>
-                <input type="email" id="profile-email" name="email">
+                <input
+                    type="email"
+                    id="profile-email"
+                    name="email"
+                    readonly
+                >
 
+                <!-- Location -->
                 <label for="profile-location">Location</label>
-                <input type="text" id="profile-location" name="location">
+                <input
+                    type="text"
+                    id="profile-location"
+                    name="location"
+                >
 
+                <!-- About Me -->
                 <label for="profile-bio">About Me</label>
-                <textarea id="profile-bio" name="bio" rows="5"></textarea>
+                <textarea
+                    id="profile-bio"
+                    name="bio"
+                    rows="5"
+                ></textarea>
 
                 <button type="submit">Save Profile</button>
+
             </form>
 
         </main>
 
         <div id="footer-placeholder"></div>
+
     </div>
 
 </body>
