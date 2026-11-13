@@ -237,7 +237,6 @@ async function checkAuthSession() {
 
 checkAuthSession();
 
-
 // ============================================
 // PROFILE PAGE AND PHOTO UPLOAD
 // ============================================
@@ -253,7 +252,10 @@ if (profileForm) {
     let currentUser = null;
     let selectedPhoto = null;
 
-    // Display a profile photo
+    // ----------------------------------------
+    // DISPLAY PROFILE PHOTO
+    // ----------------------------------------
+
     function displayProfilePhoto(url) {
         if (!url) {
             photoPreview.hidden = true;
@@ -267,54 +269,10 @@ if (profileForm) {
         photoPlaceholder.hidden = true;
     }
 
-    // Load the user's profile
-    async function loadProfile() {
-        try {
-            const { data: { user }, error: userError } =
-                await supabaseClient.auth.getUser();
+    // ----------------------------------------
+    // PREVIEW SELECTED PHOTO
+    // ----------------------------------------
 
-            if (userError || !user) {
-                window.location.href = BASE_URL + "signin.html";
-                return;
-            }
-
-            currentUser = user;
-
-            const { data, error } = await supabaseClient
-                .from("profiles")
-                .select("*")
-                .eq("id", user.id)
-                .maybeSingle();
-
-            if (error) throw error;
-
-            document.getElementById("profile-name").value =
-                data?.full_name ||
-                [
-                    user.user_metadata?.first_name,
-                    user.user_metadata?.last_name
-                ].filter(Boolean).join(" ") || "";
-
-            document.getElementById("profile-email").value =
-                user.email || "";
-
-            document.getElementById("profile-location").value =
-                data?.location || "";
-
-            document.getElementById("profile-bio").value =
-                data?.bio || "";
-
-            if (data?.avatar_url) {
-                displayProfilePhoto(data.avatar_url);
-            }
-
-        } catch (error) {
-            console.error("Profile loading error:", error);
-            showMessage(profileForm, error.message);
-        }
-    }
-
-    // Preview selected photo
     photoInput.addEventListener("change", () => {
         const file = photoInput.files[0];
 
@@ -331,6 +289,7 @@ if (profileForm) {
                 profileForm,
                 "Please choose a JPG, PNG, or WebP image."
             );
+
             photoInput.value = "";
             selectedPhoto = null;
             return;
@@ -341,6 +300,7 @@ if (profileForm) {
                 profileForm,
                 "Your profile photo must be smaller than 5 MB."
             );
+
             photoInput.value = "";
             selectedPhoto = null;
             return;
@@ -352,7 +312,10 @@ if (profileForm) {
         displayProfilePhoto(previewURL);
     });
 
-    // Upload profile photo to Supabase Storage
+    // ----------------------------------------
+    // UPLOAD PROFILE PHOTO TO SUPABASE
+    // ----------------------------------------
+
     async function uploadProfilePhoto() {
         if (!selectedPhoto) return null;
 
@@ -382,7 +345,62 @@ if (profileForm) {
         return data.publicUrl;
     }
 
-    // Save profile information
+    // ----------------------------------------
+    // LOAD PROFILE
+    // ----------------------------------------
+
+    async function loadProfile() {
+        try {
+            const { data: { session }, error: sessionError } =
+                await supabaseClient.auth.getSession();
+
+            if (sessionError) throw sessionError;
+
+            if (!session) {
+                window.location.replace(BASE_URL + "signin.html");
+                return;
+            }
+
+            currentUser = session.user;
+
+            const { data, error } = await supabaseClient
+                .from("profiles")
+                .select("*")
+                .eq("id", currentUser.id)
+                .maybeSingle();
+
+            if (error) throw error;
+
+            document.getElementById("profile-name").value =
+                data?.full_name ||
+                [
+                    currentUser.user_metadata?.first_name,
+                    currentUser.user_metadata?.last_name
+                ].filter(Boolean).join(" ") || "";
+
+            document.getElementById("profile-email").value =
+                currentUser.email || "";
+
+            document.getElementById("profile-location").value =
+                data?.location || "";
+
+            document.getElementById("profile-bio").value =
+                data?.bio || "";
+
+            if (data?.avatar_url) {
+                displayProfilePhoto(data.avatar_url);
+            }
+
+        } catch (error) {
+            console.error("Profile loading error:", error);
+            showMessage(profileForm, error.message);
+        }
+    }
+
+    // ----------------------------------------
+    // SAVE PROFILE INFORMATION
+    // ----------------------------------------
+
     profileForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -460,6 +478,9 @@ if (profileForm) {
         }
     });
 
-    // Initialize profile page
+    // ----------------------------------------
+    // INITIALIZE PROFILE PAGE
+    // ----------------------------------------
+
     loadProfile();
 }
