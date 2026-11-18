@@ -29,21 +29,20 @@
             <h2>AI Interview Coach</h2>
             <p>Tell the coach what job you're interviewing for, then answer its questions one at a time.</p>
         </div>
-        <div class="tool">
-            <div class="card chat-wrap">
-                <aside class="chat-sidebar">
-                    <button type="button" class="btn" id="newChatBtn">+ New chat</button>
-                    <div id="chatList"></div>
-                </aside>
+        <div class="tool chat-layout">
+            <div class="card history-card">
+                <h2>Past chats</h2>
+                <button type="button" class="btn" id="newChatBtn">+ New chat</button>
+                <div id="chatList"></div>
+            </div>
 
-                <div class="chat-main">
-                    <div class="chat-log" id="chatLog" aria-live="polite"></div>
-                    <div class="chat-input">
-                        <textarea id="chatInput" rows="2" placeholder="Type here and press Enter to send"></textarea>
-                        <button type="button" class="btn" id="sendBtn">Send</button>
-                    </div>
-                    <p class="hint">Please don't include your full name, contact info, or confidential employer details. Messages may be reviewed by Google to improve its products.</p>
+            <div class="card chat-card">
+                <div class="chat-log" id="chatLog" aria-live="polite"></div>
+                <div class="chat-input">
+                    <textarea id="chatInput" rows="2" placeholder="Type here and press Enter to send"></textarea>
+                    <button type="button" class="btn" id="sendBtn">Send</button>
                 </div>
+                <p class="hint">Please don't include your full name, contact info, or confidential employer details. Messages may be reviewed by Google to improve its products.</p>
             </div>
         </div>
     </main>

@@ -318,7 +318,7 @@ select:focus {
     margin-bottom: 1.75rem;
 }
 
-.group > h3 {
+.group>h3 {
     margin: 0 0 .75rem;
     color: var(--text-color);
 }
@@ -468,7 +468,7 @@ select:focus {
 }
 
 /* Keep the preview in view while filling out a long form */
-@media (min-width: 900px) {
+@media (min-width: 500px) {
     #preview {
         position: sticky;
         top: 1rem;
@@ -478,14 +478,8 @@ select:focus {
 }
 
 @media (max-width: 800px) {
-    #wrapper {
-        width: 100%;
-        margin-top: 0;
-        border-radius: 0;
-    }
-
     header nav {
-        font-size: .75rem;
+        font-size: .7rem;
     }
 }
 
@@ -549,9 +543,9 @@ select:focus {
    contains the theme radios.
    ========================================================== */
 
-main > form:has(input[name="theme"]) {
+main>form:has(input[name="theme"]) {
     width: 100%;
-    max-width: 520px;
+    max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
     background: var(--card-background);
@@ -561,14 +555,53 @@ main > form:has(input[name="theme"]) {
 }
 
 /* Fieldset + legend */
+/* 1. Turn the fieldset into a wrapping flex container */
 main > form:has(input[name="theme"]) fieldset {
+    display: flex;
+    flex-direction: column;
     border: none;
     margin: 0 0 1.5rem;
     padding: 0;
     min-width: 0;
 }
 
-main > form:has(input[name="theme"]) legend {
+.theme-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+/* 2. Style the theme option cards to stack on mobile, 2-column on desktop */
+main > form:has(input[name="theme"]) label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 1rem 1.25rem;
+    background: var(--background-color);
+    border: 3px solid var(--card-border);
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    
+    /* Mobile: full width */
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    transition: transform .15s, border-color .15s, box-shadow .15s;
+}
+
+/* Desktop layout: Switch to 2 columns when screen is 550px or wider */
+@media (min-width: 700px) {
+    main > form:has(input[name="theme"]) label {
+        flex: 0 1 calc(50% - 0.5rem); /* Changed flex-grow from 1 to 0 */
+    }
+}
+
+
+main>form:has(input[name="theme"]) legend {
     padding: 0;
     margin-bottom: 1.25rem;
     font-size: 1.75rem;
@@ -577,15 +610,15 @@ main > form:has(input[name="theme"]) legend {
     color: var(--border-top-color);
 }
 
-[data-theme="dark"] main > form:has(input[name="theme"]) legend,
-[data-theme="grape"] main > form:has(input[name="theme"]) legend,
-[data-theme="forest"] main > form:has(input[name="theme"]) legend,
-[data-theme="neon"] main > form:has(input[name="theme"]) legend {
+[data-theme="dark"] main>form:has(input[name="theme"]) legend,
+[data-theme="grape"] main>form:has(input[name="theme"]) legend,
+[data-theme="forest"] main>form:has(input[name="theme"]) legend,
+[data-theme="neon"] main>form:has(input[name="theme"]) legend {
     color: var(--primary-color);
 }
 
 /* Each option becomes a selectable card */
-main > form:has(input[name="theme"]) label {
+main>form:has(input[name="theme"]) label {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -600,23 +633,23 @@ main > form:has(input[name="theme"]) label {
     transition: transform .15s, border-color .15s, box-shadow .15s;
 }
 
-main > form:has(input[name="theme"]) label:hover {
+main>form:has(input[name="theme"]) label:hover {
     transform: translateY(-2px);
     border-color: var(--primary-color);
 }
 
-main > form:has(input[name="theme"]) label:has(input:checked) {
+main>form:has(input[name="theme"]) label:has(input:checked) {
     border-color: var(--primary-color);
     box-shadow: 0 4px 0 var(--border-top-color);
 }
 
-main > form:has(input[name="theme"]) label:has(input:focus-visible) {
+main>form:has(input[name="theme"]) label:has(input:focus-visible) {
     outline: 3px solid var(--secondary-color);
     outline-offset: 2px;
 }
 
 /* Custom radio dot */
-main > form:has(input[name="theme"]) input[type="radio"] {
+main>form:has(input[name="theme"]) input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
     flex: none;
@@ -631,7 +664,7 @@ main > form:has(input[name="theme"]) input[type="radio"] {
     cursor: pointer;
 }
 
-main > form:has(input[name="theme"]) input[type="radio"]::before {
+main>form:has(input[name="theme"]) input[type="radio"]::before {
     content: "";
     width: 12px;
     height: 12px;
@@ -642,12 +675,12 @@ main > form:has(input[name="theme"]) input[type="radio"]::before {
     transition: transform .15s;
 }
 
-main > form:has(input[name="theme"]) input[type="radio"]:checked::before {
+main>form:has(input[name="theme"]) input[type="radio"]:checked::before {
     transform: scale(1);
 }
 
 /* Little theme previews on the right of each card */
-main > form:has(input[name="theme"]) label::after {
+main>form:has(input[name="theme"]) label::after {
     content: "";
     flex: none;
     margin-left: auto;
@@ -657,7 +690,7 @@ main > form:has(input[name="theme"]) label::after {
     border-radius: 8px;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="light"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="light"])::after {
     background:
         linear-gradient(#308fe5, #308fe5) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#b9ddf7, #b9ddf7) 6px 16px / 40px 4px no-repeat,
@@ -665,7 +698,7 @@ main > form:has(input[name="theme"]) label:has(input[value="light"])::after {
         #ffffff;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="dark"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="dark"])::after {
     background:
         linear-gradient(#4aa3f5, #4aa3f5) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#2a6aa3, #2a6aa3) 6px 16px / 40px 4px no-repeat,
@@ -673,7 +706,7 @@ main > form:has(input[name="theme"]) label:has(input[value="dark"])::after {
         #121212;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="sunset"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="sunset"])::after {
     background:
         linear-gradient(#ff7a2f, #ff7a2f) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#ffc9a0, #ffc9a0) 6px 16px / 40px 4px no-repeat,
@@ -681,7 +714,7 @@ main > form:has(input[name="theme"]) label:has(input[value="sunset"])::after {
         #fff8f0;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="forest"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="forest"])::after {
     background:
         linear-gradient(#4cc27a, #4cc27a) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#25523a, #25523a) 6px 16px / 40px 4px no-repeat,
@@ -689,7 +722,7 @@ main > form:has(input[name="theme"]) label:has(input[value="forest"])::after {
         #0c1a12;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="grape"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="grape"])::after {
     background:
         linear-gradient(#b57bff, #b57bff) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#5b3a8f, #5b3a8f) 6px 16px / 40px 4px no-repeat,
@@ -697,7 +730,7 @@ main > form:has(input[name="theme"]) label:has(input[value="grape"])::after {
         #1a1026;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="neon"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="neon"])::after {
     background:
         linear-gradient(#39ff14, #39ff14) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#00e5ff, #00e5ff) 6px 16px / 40px 4px no-repeat,
@@ -705,7 +738,7 @@ main > form:has(input[name="theme"]) label:has(input[value="neon"])::after {
         #0a0f14;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="red-black"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="red-black"])::after {
     background:
         linear-gradient(#e50925, #e50925) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#ff4d5a, #ff4d5a) 6px 16px / 40px 4px no-repeat,
@@ -713,7 +746,7 @@ main > form:has(input[name="theme"]) label:has(input[value="red-black"])::after 
         #0a0a0a;
 }
 
-main > form:has(input[name="theme"]) label:has(input[value="pink"])::after {
+main>form:has(input[name="theme"]) label:has(input[value="pink"])::after {
     background:
         linear-gradient(#ff5fae, #ff5fae) 6px 6px / 28px 6px no-repeat,
         linear-gradient(#ffb8d9, #ffb8d9) 6px 16px / 40px 4px no-repeat,
@@ -722,7 +755,7 @@ main > form:has(input[name="theme"]) label:has(input[value="pink"])::after {
 }
 
 /* Save button, matching the site's chunky pill buttons */
-main > form:has(input[name="theme"]) button[type="submit"] {
+main>form:has(input[name="theme"]) button[type="submit"] {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -738,11 +771,11 @@ main > form:has(input[name="theme"]) button[type="submit"] {
     transition: transform .15s, box-shadow .15s;
 }
 
-main > form:has(input[name="theme"]) button[type="submit"]:hover {
+main>form:has(input[name="theme"]) button[type="submit"]:hover {
     transform: translateY(-2px);
 }
 
-main > form:has(input[name="theme"]) button[type="submit"]:active {
+main>form:has(input[name="theme"]) button[type="submit"]:active {
     transform: translateY(3px);
     box-shadow: 0 1px 0 var(--border-top-color);
 }
@@ -763,16 +796,65 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     font-size: 2em;
 }
 
-.r1 .reaction-text { color: #ef4444; }
-.r2 .reaction-text { color: #f97316; }
-.r3 .reaction-text { color: #eab308; }
-.r4 .reaction-text { color: #84cc16; }
-.r5 .reaction-text { color: #22c55e; }
+.r1 .reaction-text {
+    color: #ef4444;
+}
+
+.r2 .reaction-text {
+    color: #f97316;
+}
+
+.r3 .reaction-text {
+    color: #eab308;
+}
+
+.r4 .reaction-text {
+    color: #84cc16;
+}
+
+.r5 .reaction-text {
+    color: #22c55e;
+}
 
 #chatLog {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.chat-wrap {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.chat-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-main {
+    flex: 1;
+    min-width: 0;
+}
+
+#chatList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+#chatList button {
+    text-align: left;
+}
+
+#chatList button.active {
+    font-weight: bold;
 }
 
 .chat-wrap { display: flex; gap: 16px; align-items: flex-start; }
@@ -787,24 +869,85 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     .chat-sidebar { width: 100%; }
 }
 
+/* Chat layout: history card beside the chat card */
+.tool.chat-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.history-card {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.history-card h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.history-card #newChatBtn {
+    width: 100%;
+}
+
+#chatList {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 2px 2px 6px;
+}
+
+#chatList button {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#chatList button.active {
+    background: var(--primary-color);
+}
+
+.chat-card {
+    min-width: 0;
+}
+
+@media (max-width: 800px) {
+    .tool.chat-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* MEDIA STYLES */
 
 @keyframes pop {
-    0%   { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1);   opacity: 1; }
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 480px) {
-    main > form:has(input[name="theme"]) {
+    main>form:has(input[name="theme"]) {
         padding: 1.25rem;
         border-radius: 16px;
     }
 
-    main > form:has(input[name="theme"]) legend {
+    main>form:has(input[name="theme"]) legend {
         font-size: 1.4rem;
     }
 
-    main > form:has(input[name="theme"]) label::after {
+    main>form:has(input[name="theme"]) label::after {
         width: 44px;
     }
 }
@@ -928,6 +1071,33 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     letter-spacing: .1em;
 }
 
+/* ---------- Resume style: Compact ---------- */
+#preview.tpl-compact {
+    font-size: .85rem;
+    line-height: 1.35;
+    padding: 1.5rem;
+}
+
+#preview.tpl-compact h1 {
+    font-size: 1.6rem;
+}
+
+#preview.tpl-compact h2 {
+    margin: .8rem 0 .35rem;
+    font-size: .85rem;
+}
+
+#preview.tpl-compact .r-entry {
+    margin-bottom: .45rem;
+}
+
+@media print {
+    #preview.tpl-modern .r-head {
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
 .signin-prompt {
     display: flex;
     flex-direction: column;
@@ -1013,9 +1183,9 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     box-shadow: 0 5px 0 var(--border-top-color);
 
     transition: background-color 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 /* Secondary Authentication Button */
@@ -1043,9 +1213,9 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     box-shadow: 0 5px 0 var(--border-top-color);
 
     transition: background-color 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 /* Button Hover */
@@ -1222,6 +1392,7 @@ main > form:has(input[name="theme"]) button[type="submit"]:active {
     color: var(--primary-color);
     transition: color 0.2s ease;
 }
+
 /* Force Red-Black theme subtitle color */
 html[data-theme="red-black"] .auth-page .auth-container .auth-header p {
     color: #e50925 !important;
