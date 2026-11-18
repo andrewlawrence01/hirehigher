@@ -36,15 +36,40 @@ window.signInWithGoogle = async () => {
 
 window.signOutUser = () => signOut(auth);
 
+// Updates the page (sign-in button, header profile, profile form)
+function updateAuthUI(user) {
+  const $ = (id) => document.getElementById(id);
+
+  // Sign-in button / user info (signin.html and header)
+  if ($("signin-btn")) $("signin-btn").style.display = user ? "none" : "inline-block";
+  if ($("user-info")) $("user-info").style.display = user ? "flex" : "none";
+  if ($("user-name")) $("user-name").textContent = user ? user.displayName : "";
+  if ($("user-photo")) {
+    $("user-photo").referrerPolicy = "no-referrer";
+    $("user-photo").src = user?.photoURL || "";
+  }
+
+  // Profile page form
+  if (user && $("profile-form")) {
+    if ($("profile-name") && !$("profile-name").value) $("profile-name").value = user.displayName || "";
+    if ($("profile-email")) $("profile-email").value = user.email || "";
+
+    if (user.photoURL && $("profile-photo-preview")) {
+      $("profile-photo-preview").referrerPolicy = "no-referrer";
+      $("profile-photo-preview").src = user.photoURL;
+      $("profile-photo-preview").hidden = false;
+      if ($("profile-photo-placeholder")) $("profile-photo-placeholder").hidden = true;
+    }
+  }
+}
+
+// Lets header.js re-run the update after it injects the header
+window.updateAuthUI = () => updateAuthUI(auth.currentUser);
+
 // Runs on page load and whenever someone signs in or out
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log("Signed in:", user.displayName, user.email);
-    // show your chat UI / user's name here
-  } else {
-    console.log("Signed out");
-    // show your sign-in button here
-  }
+  console.log(user ? `Signed in: ${user.displayName}` : "Signed out");
+  updateAuthUI(user);
 });
 
 
