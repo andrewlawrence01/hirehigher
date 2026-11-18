@@ -38,29 +38,32 @@ window.signOutUser = () => signOut(auth);
 
 // Updates the page (sign-in button, header profile, profile form)
 function updateAuthUI(user) {
-  const $ = (id) => document.getElementById(id);
+    const $ = (id) => document.getElementById(id);
 
-  // Sign-in button / user info (signin.html and header)
-  if ($("signin-btn")) $("signin-btn").style.display = user ? "none" : "inline-block";
-  if ($("user-info")) $("user-info").style.display = user ? "flex" : "none";
-  if ($("user-name")) $("user-name").textContent = user ? user.displayName : "";
-  if ($("user-photo")) {
-    $("user-photo").referrerPolicy = "no-referrer";
-    $("user-photo").src = user?.photoURL || "";
-  }
-
-  // Profile page form
-  if (user && $("profile-form")) {
-    if ($("profile-name") && !$("profile-name").value) $("profile-name").value = user.displayName || "";
-    if ($("profile-email")) $("profile-email").value = user.email || "";
-
-    if (user.photoURL && $("profile-photo-preview")) {
-      $("profile-photo-preview").referrerPolicy = "no-referrer";
-      $("profile-photo-preview").src = user.photoURL;
-      $("profile-photo-preview").hidden = false;
-      if ($("profile-photo-placeholder")) $("profile-photo-placeholder").hidden = true;
+    if ($("signin-btn")) {
+        $("signin-btn").style.display = user ? "none" : "inline-block";
     }
-  }
+
+    if ($("signout-btn")) {
+        $("signout-btn").style.display = user ? "inline-block" : "none";
+    }
+
+    if ($("user-info")) {
+        $("user-info").style.display = user ? "flex" : "none";
+    }
+
+    if ($("user-name")) {
+        $("user-name").textContent = user
+            ? `Signed in as ${user.displayName}`
+            : "";
+    }
+
+    if ($("user-photo")) {
+        $("user-photo").src = user?.photoURL || "";
+        $("user-photo").hidden = !user;
+    }
+
+    // Keep your existing profile form code below this point
 }
 
 // Lets header.js re-run the update after it injects the header
