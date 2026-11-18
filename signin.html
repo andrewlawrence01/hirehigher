@@ -23,16 +23,16 @@
 
     <main class="auth-page">
 
-        <div id="user-info" class="user-info">
+        <div id="user-info" class="user-info" style="display: none;">
             <img id="user-photo" class="user-photo" alt="Profile picture">
             <span id="user-name"></span>
         </div>
 
-        <button id="signin-btn" onclick="signInWithGoogle()">
+        <button id="signin-btn" class="btn" onclick="signInWithGoogle()">
             Sign in with Google
         </button>
 
-        <button id="signout-btn" onclick="signOutUser()">
+        <button id="signout-btn" class="btn alt" onclick="signOutUser()" style="display: none;">
             Sign out
         </button>
 
