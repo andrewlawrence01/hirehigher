@@ -4,7 +4,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js";
 import { getFirestore, collection, addDoc, query, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 // Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBtciBVV4S0wmyhtg_Gqx3iNmoMOVIEChs",
@@ -19,6 +19,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // FIREBASE JAVASCRIPT DO NOT DELETE - MOLLI >:(
+
+// ---------- GOOGLE SIGN-IN ----------
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+window.signInWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    return result.user;
+  } catch (e) {
+    console.error(e.code, e.message);
+    return null;
+  }
+};
+
+window.signOutUser = () => signOut(auth);
+
+// Runs on page load and whenever someone signs in or out
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Signed in:", user.displayName, user.email);
+    // show your chat UI / user's name here
+  } else {
+    console.log("Signed out");
+    // show your sign-in button here
+  }
+});
 
 
 // ---------- AI INTERVIEW COACH ----------
