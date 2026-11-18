@@ -22,88 +22,51 @@
     <div id="header-placeholder"></div>
 
     <main class="auth-page">
-
-        <div id="user-info" class="user-info" style="display: none;">
-            <img id="user-photo" class="user-photo" alt="Profile picture">
-            <span id="user-name"></span>
-        </div>
-
-        <button id="signin-btn" class="btn" onclick="signInWithGoogle()">
-            Sign in with Google
-        </button>
-
-        <button id="signout-btn" class="btn alt" onclick="signOutUser()" style="display: none;">
-            Sign out
-        </button>
-
-        <!-- THIS IS A TEMPORARY REMOVAL PLEASE DO NOT DELETE OR 
-         PUT THE CODE BACK IN UNTIL THE WARNING GOES AWAY -->
-
-        <!-- <section class="auth-container">
-
+        <section class="auth-card">
             <div class="auth-header">
-                <h1>Welcome Back!</h1>
-                <p>Sign in to continue your career journey.</p>
+                <h1>Welcome to Hire Higher</h1>
+                <p>Sign in to save your resume, practice interviews, and continue your career journey.</p>
             </div>
 
-            <form class="auth-form" id="signin-form">
+            <form class="auth-form" id="email-signin-form">
+                <label for="email">Email address</label>
+                <input
+                    type="email"
+                    id="email"
+                    autocomplete="email"
+                    placeholder="you@example.com"
+                    required>
 
-                <div class="form-group">
-                    <label for="signin-email">Email Address</label>
-                    <input
-                        type="email"
-                        id="signin-email"
-                        name="email"
-                        placeholder="example@email.com"
-                        autocomplete="email"
-                        required>
-                </div>
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    autocomplete="current-password"
+                    placeholder="Enter your password"
+                    required>
 
-                <div class="form-group">
-                    <label for="signin-password">Password</label>
-                    <input
-                        type="password"
-                        id="signin-password"
-                        name="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required>
-                </div>
-
-                <div class="form-options">
-
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="rememberMe">
-                        Remember Me
-                    </label>
-
-                    <a href="#" class="forgot-password">
-                        Forgot Password?
-                    </a>
-
-                </div>
-
-                <button type="button" class="auth-button">
-                    Sign In
+                <button type="submit" class="btn auth-submit">
+                    Sign in
                 </button>
-
             </form>
 
             <div class="auth-divider">
-                <span>New to Hire Higher?</span>
+                <span>or</span>
             </div>
 
-            <p class="auth-switch">
-                <a href="signup.html" class="auth-secondary-button">
-                    Create an Account
-                </a>
+            <button type="button" class="btn google-btn" onclick="signInWithGoogle()">
+                Continue with Google
+            </button>
+
+            <p class="auth-note">
+                Google securely handles your Google login. Hire Higher never sees your Google password.
             </p>
 
-        </section> -->
-
-        <!-- THIS IS A TEMPORARY REMOVAL PLEASE DO NOT DELETE OR 
-         PUT THE CODE BACK IN UNTIL THE WARNING GOES AWAY -->
-
+            <p class="auth-footer">
+                Don't have an account?
+                <a href="signup.html">Create one</a>
+            </p>
+        </section>
     </main>
 
     <!-- Shared Footer -->

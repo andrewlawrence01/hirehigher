@@ -1506,3 +1506,79 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
 #signout-btn {
     margin: 0.5rem;
 }
+
+.auth-page {
+    justify-content: center;
+    min-height: 70vh;
+}
+
+.auth-card {
+    width: min(100%, 460px);
+    padding: 2rem;
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, .15);
+    text-align: center;
+}
+
+.auth-header h1 {
+    margin-top: 0;
+    color: var(--border-top-color);
+}
+
+.auth-header p {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-align: left;
+}
+
+.auth-form input {
+    margin-bottom: .75rem;
+}
+
+.auth-submit,
+.google-btn {
+    width: 100%;
+    margin-top: .5rem;
+}
+
+.google-btn {
+    background: var(--primary-color);
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: var(--placeholder-color);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: var(--card-border);
+}
+
+.auth-note {
+    margin: 1rem 0;
+    font-size: .85rem;
+    color: var(--placeholder-color);
+}
+
+.auth-footer {
+    margin-bottom: 0;
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    font-weight: 800;
+}
