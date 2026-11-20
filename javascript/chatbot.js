@@ -1,3 +1,4 @@
+console.log("chatbot.js v2 loaded");
 const log = document.getElementById("chatLog");
 const input = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
@@ -80,13 +81,26 @@ function renderSaved(msgs) {
 
 let activeChat = null;
 
-async function openPastChat(id) {
-    const msgs = await window.openChat(id); // also restores the AI's memory
-    activeChat = id;
-    log.innerHTML = "";
-    log.appendChild(renderSaved(msgs));
-    log.scrollTop = log.scrollHeight;
+// ---------- select mode (for deleting chats) ----------
+let selectMode = false;
+const selected = new Set();
+
+const selectBtn = document.getElementById("selectBtn");
+const selectActions = document.getElementById("selectActions");
+const deleteSelectedBtn = document.getElementById("deleteSelectedBtn");
+
+function setSelectMode(on) {
+    selectMode = on;
+    selected.clear();
+    selectBtn.style.display = on ? "none" : "";
+    selectActions.style.display = on ? "" : "none";
+    updateDeleteBtn();
     refreshChatList();
+}
+
+function updateDeleteBtn() {
+    deleteSelectedBtn.textContent = `Delete selected (${selected.size})`;
+    deleteSelectedBtn.disabled = selected.size === 0;
 }
 
 function refreshChatList() {
@@ -101,37 +115,62 @@ function refreshChatList() {
         btn.type = "button";
         btn.className = "btn small";
         btn.textContent = c.title || "Untitled";
-        if (c.id === activeChat) btn.classList.add("active");
-        btn.onclick = () => openPastChat(c.id);
 
-        const del = document.createElement("button");
-        del.type = "button";
-        del.className = "btn small delete-chat";
-        del.textContent = "🗑";
-        del.title = "Delete this chat";
-        del.setAttribute("aria-label", "Delete chat: " + (c.title || "Untitled"));
-        del.onclick = () => handleDelete(c.id);
-
-        row.append(btn, del);
+        if (selectMode) {
+            const box = document.createElement("input");
+            box.type = "checkbox";
+            box.checked = selected.has(c.id);
+            const toggle = () => {
+                box.checked ? selected.add(c.id) : selected.delete(c.id);
+                updateDeleteBtn();
+            };
+            box.onchange = toggle;
+            // clicking the title also ticks the box
+            btn.onclick = () => { box.checked = !box.checked; toggle(); };
+            row.append(box, btn);
+        } else {
+            if (c.id === activeChat) btn.classList.add("active");
+            btn.onclick = () => openPastChat(c.id);
+            row.append(btn);
+        }
         list.appendChild(row);
     }
 }
 
-async function handleDelete(id) {
-    if (!confirm("Delete this chat? This can't be undone.")) return;
+async function handleDeleteSelected() {
+    const n = selected.size;
+    if (!n) return;
+    if (!confirm(`Delete ${n} chat${n > 1 ? "s" : ""}? This can't be undone.`)) return;
     if (typeof window.deleteChat !== "function") {
         alert("Deleting isn't available yet.");
         return;
     }
-    await window.deleteChat(id);
 
-    // if you deleted the chat you were viewing, reset to a fresh one
-    if (id === activeChat) {
+    for (const id of selected) {
+        await window.deleteChat(id);
+    }
+
+    // if the chat you were viewing got deleted, reset to a fresh one
+    if (selected.has(activeChat)) {
         window.newChat();
         activeChat = null;
         log.innerHTML = "";
         addMessage("Hi! I'm your interview coach. What job are you interviewing for?", "coach");
     }
+    setSelectMode(false);
+}
+
+selectBtn.addEventListener("click", () => setSelectMode(true));
+document.getElementById("cancelSelectBtn").addEventListener("click", () => setSelectMode(false));
+deleteSelectedBtn.addEventListener("click", handleDeleteSelected);
+
+// ---------- opening chats ----------
+async function openPastChat(id) {
+    const msgs = await window.openChat(id); // also restores the AI's memory
+    activeChat = id;
+    log.innerHTML = "";
+    log.appendChild(renderSaved(msgs));
+    log.scrollTop = log.scrollHeight;
     refreshChatList();
 }
 
