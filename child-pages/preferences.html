@@ -19,50 +19,114 @@
 
         <div id="header-placeholder"></div>
 
+        <main class="preferences-page">
 
-    <main class="preferences-page">
-        <form action="#" method="post">
+            <div class="welcome">
+                <h1>Preferences</h1>
+                <p>Set the kind of work you're looking for and how you want to practice for interviews.</p>
+            </div>
 
-            <fieldset>
-                <legend>Job Preferences</legend>
+            <form class="pref-form" id="prefForm" action="#" method="post">
 
-                <label for="preferred-field">Preferred Job Field</label>
-                <input type="text" id="preferred-field" name="preferred-field">
+                <!-- Job preferences -->
+                <fieldset class="pref-card">
+                    <legend>
+                        <span class="badge" aria-hidden="true">💼</span>
+                        <span class="pref-title">Job preferences</span>
+                    </legend>
 
-                <label for="preferred-location">Preferred Location</label>
-                <input type="text" id="preferred-location" name="preferred-location">
+                    <div class="two-col">
+                        <div class="field">
+                            <label for="preferred-field">Preferred job field</label>
+                            <input type="text" id="preferred-field" name="preferred-field"
+                                placeholder="e.g. Software engineering">
+                        </div>
+                        <div class="field">
+                            <label for="preferred-location">Preferred location</label>
+                            <input type="text" id="preferred-location" name="preferred-location"
+                                placeholder="e.g. Boise, ID">
+                        </div>
+                    </div>
 
-                <label for="preferred-job-type">Preferred Job Type</label>
-                <select id="preferred-job-type" name="preferred-job-type">
-                    <option value="">Select a job type</option>
-                    <option value="full-time">Full Time</option>
-                    <option value="part-time">Part Time</option>
-                    <option value="internship">Internship</option>
-                    <option value="remote">Remote</option>
-                </select>
-            </fieldset>
+                    <div class="field">
+                        <label for="preferred-job-type">Preferred job type</label>
+                        <select id="preferred-job-type" name="preferred-job-type">
+                            <option value="">Select a job type</option>
+                            <option value="full-time">Full time</option>
+                            <option value="part-time">Part time</option>
+                            <option value="internship">Internship</option>
+                            <option value="remote">Remote</option>
+                        </select>
+                    </div>
+                </fieldset>
 
-            <fieldset>
-                <legend>Interview Preferences</legend>
+                <!-- Interview preferences -->
+                <fieldset class="pref-card">
+                    <legend>
+                        <span class="badge" aria-hidden="true">🎤</span>
+                        <span class="pref-title">Interview preferences</span>
+                    </legend>
 
-                <label>
-                    <input type="checkbox" name="practice-behavioral">
-                    Practice behavioral questions
-                </label>
+                    <div class="pref-options">
+                        <label class="pref-option">
+                            <input type="checkbox" name="practice-behavioral">
+                            <span>
+                                <strong>Practice behavioral questions</strong>
+                                <small>Questions about teamwork, problem solving and past experience.</small>
+                            </span>
+                        </label>
 
-                <label>
-                    <input type="checkbox" name="practice-technical">
-                    Practice technical questions
-                </label>
-            </fieldset>
+                        <label class="pref-option">
+                            <input type="checkbox" name="practice-technical">
+                            <span>
+                                <strong>Practice technical questions</strong>
+                                <small>Questions about the skills and knowledge your field expects.</small>
+                            </span>
+                        </label>
+                    </div>
+                </fieldset>
 
-            <button type="submit">Save Preferences</button>
-        </form>
-    </main>
+                <button type="submit" class="btn pref-save">Save preferences</button>
+                <p class="form-status" id="prefStatus" role="status" aria-live="polite" hidden></p>
+            </form>
 
-    <div id="footer-placeholder"></div>
+        </main>
 
-</div>
+        <div id="footer-placeholder"></div>
+
+    </div>
+
+    <script>
+        // Saves to this browser only. Replace with your Supabase save when ready.
+        (function () {
+            var form = document.getElementById("prefForm");
+            var status = document.getElementById("prefStatus");
+            var KEY = "hirehigher-preferences";
+
+            try {
+                var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+                if (saved) {
+                    Array.prototype.forEach.call(form.elements, function (el) {
+                        if (!el.name || !(el.name in saved)) return;
+                        if (el.type === "checkbox") el.checked = !!saved[el.name];
+                        else el.value = saved[el.name];
+                    });
+                }
+            } catch (e) { }
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                var data = {};
+                Array.prototype.forEach.call(form.elements, function (el) {
+                    if (!el.name) return;
+                    data[el.name] = el.type === "checkbox" ? el.checked : el.value;
+                });
+                try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (err) { }
+                status.textContent = "Preferences saved.";
+                status.hidden = false;
+            });
+        })();
+    </script>
 
 </body>
 
