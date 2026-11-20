@@ -1618,3 +1618,87 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
 .group input[type="checkbox"]:checked::before {
     transform: rotate(-45deg) scale(1);
 }
+
+
+/* =========================================
+   ABOUT PAGE - TEAM SECTION
+========================================= */
+
+.about-page {
+    width: 100%;
+}
+
+.about-section,
+.team-section {
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.team-section {
+    text-align: center;
+}
+
+.team-intro {
+    max-width: 750px;
+    margin: 0 auto 2rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    overflow: hidden;
+    border-radius: 12px;
+    text-align: left;
+    background: var(--card-background, #ffffff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.team-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+}
+
+.team-member-info {
+    padding: 1.5rem;
+}
+
+.team-member-info h3 {
+    margin: 0 0 0.4rem;
+}
+
+.team-member-info h4 {
+    margin: 0 0 1rem;
+    color: var(--primary-color, #006eb6);
+}
+
+.team-member-info p {
+    line-height: 1.6;
+}
+
+/* Tablet */
+@media (max-width: 800px) {
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 550px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section,
+    .team-section {
+        padding: 1.5rem 1rem;
+    }
+}
