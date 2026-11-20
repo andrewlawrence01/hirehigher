@@ -1582,3 +1582,39 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     color: var(--primary-color);
     font-weight: 800;
 }
+
+/* ---------- Custom checkbox box ---------- */
+.group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    margin: 0;
+    border: 3px solid var(--border-top-color);
+    border-radius: 8px;
+    background: var(--background-color);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.group input[type="checkbox"]::before {
+    content: "";
+    width: 12px;
+    height: 7px;
+    border-left: 3px solid #000;
+    border-bottom: 3px solid #000;
+    margin-top: -2px;
+    transform: rotate(-45deg) scale(0);
+    transition: transform .15s;
+}
+
+.group input[type="checkbox"]:checked {
+    background: var(--secondary-color);
+}
+
+.group input[type="checkbox"]:checked::before {
+    transform: rotate(-45deg) scale(1);
+}

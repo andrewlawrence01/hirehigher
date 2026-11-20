@@ -1,5 +1,6 @@
 const KEY = "resumeV2";
 const FIELDS = ["name", "email", "phone", "location", "link", "summary", "skills", "accent", "template"];
+const SECTIONS = ["summary", "skills", "jobs", "schools"];
 const ACCENTS = { navy: "#0e3a60", forest: "#1d5a33", plum: "#6b2d8f", rose: "#b0245f", slate: "#333a44" };
 
 const KINDS = {
@@ -100,6 +101,8 @@ function setEntries(kind, items) {
 function collect() {
   const data = {};
   FIELDS.forEach((id) => (data[id] = el(id).value));
+  data.show = {};
+  SECTIONS.forEach((s) => (data.show[s] = el("show-" + s).checked));
   Object.entries(KINDS).forEach(([kind, { container }]) => {
     data[kind] = [...el(container).children].map((box) =>
       Object.fromEntries([...box.querySelectorAll("[data-key]")].map((i) => [i.dataset.key, i.value]))
@@ -115,8 +118,8 @@ function render(v) {
   preview.style.setProperty("--accent", ACCENTS[v.accent] || ACCENTS.navy);
   preview.className = "tpl-" + (v.template || "classic");
 
-  const jobs = v.jobs.filter(hasText);
-  const schools = v.schools.filter(hasText);
+  const jobs = v.show.jobs ? v.jobs.filter(hasText) : [];
+  const schools = v.show.schools ? v.schools.filter(hasText) : [];
   const basics = ["name", "email", "phone", "location", "link", "summary", "skills"];
   if (!basics.some((k) => v[k].trim()) && !jobs.length && !schools.length) {
     add("p", "Your resume preview will appear here.");
@@ -128,13 +131,13 @@ function render(v) {
   const contact = [v.location, v.email, v.phone, v.link].map((s) => s.trim()).filter(Boolean).join("  •  ");
   if (contact) add("p", contact, head, "r-contact");
 
-  if (v.summary.trim()) {
+  if (v.show.summary && v.summary.trim()) {
     add("h2", "Summary");
     add("p", v.summary.trim());
   }
 
   const skills = v.skills.split(",").map((s) => s.trim()).filter(Boolean);
-  if (skills.length) {
+  if (v.show.skills && skills.length) {
     add("h2", "Skills");
     add("p", skills.join("  •  "));
   }
@@ -197,6 +200,9 @@ function load() {
   try { saved = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { }
   if (!saved) saved = migrateOld() || {};
   FIELDS.forEach((id) => { if (typeof saved[id] === "string") el(id).value = saved[id]; });
+  SECTIONS.forEach((s) => {
+    if (saved.show && typeof saved.show[s] === "boolean") el("show-" + s).checked = saved.show[s];
+  });
   setEntries("jobs", Array.isArray(saved.jobs) && saved.jobs.length ? saved.jobs : [{}]);
   setEntries("schools", Array.isArray(saved.schools) && saved.schools.length ? saved.schools : [{}]);
 }
@@ -248,6 +254,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!confirm("Clear everything in your resume?")) return;
     FIELDS.forEach((id) => (el(id).value = ""));
     el("accent").selectedIndex = 0;
+    el("template").selectedIndex = 0;
+    SECTIONS.forEach((s) => (el("show-" + s).checked = true));
     setEntries("jobs", [{}]);
     setEntries("schools", [{}]);
     update();
