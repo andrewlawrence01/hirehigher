@@ -17,61 +17,122 @@
 
     <div id="wrapper">
         <div id="header-placeholder"></div>
+
         <main>
 
+            <!-- Page intro -->
+            <div class="welcome">
+                <h1>Help &amp; feedback</h1>
+                <p>Find quick answers, tell us what you think, or reach the Hire Higher support team.</p>
+            </div>
 
+            <!-- Quick links -->
+            <section aria-label="Help topics">
+                <article>
+                    <h3>Browse FAQs</h3>
+                    <p>Answers to the most common questions about accounts, resumes and job search.</p>
+                    <a href="#faq">View FAQs</a>
+                </article>
+                <article>
+                    <h3>Share feedback</h3>
+                    <p>Report a problem, suggest an improvement or tell us what is working well.</p>
+                    <a href="#feedback">Send feedback</a>
+                </article>
+                <article>
+                    <h3>Contact support</h3>
+                    <p>Can't find what you need? Our support team is happy to help.</p>
+                    <a href="#contact">Get in touch</a>
+                </article>
+            </section>
 
+            <!-- FAQ -->
+            <section class="help-block" id="faq" aria-labelledby="faq-heading">
+                <h2 id="faq-heading">Frequently asked questions</h2>
+                <p class="help-intro">Select a question to see the answer.</p>
 
-            <section aria-labelledby="feedback-heading">
-                <h2 id="feedback-heading">Send Us Feedback</h2>
+                <details class="faq-item">
+                    <summary>How do I create an account?</summary>
+                    <p>Select Sign up in the header, enter your name, email and a password, then accept the terms.
+                        You can add a profile photo during sign up or later.</p>
+                </details>
 
-                <p>
-                    Your feedback helps us improve CareerConnect.
-                    Tell us about your experience or let us know if
-                    you encountered a problem.
-                </p>
+                <details class="faq-item">
+                    <summary>How do I build and print my resume?</summary>
+                    <p>Open the resume builder, fill in each section and choose a style. The preview updates as you
+                        type. When you are done, print the page and save it as a PDF.</p>
+                </details>
 
-                <form action="#" method="post">
+                <details class="faq-item">
+                    <summary>How do I change the site's theme?</summary>
+                    <p>Go to the Themes page, pick the look you want and save. Your choice applies across every page.</p>
+                </details>
 
-                    <fieldset>
-                        <legend>Feedback Information</legend>
+                <details class="faq-item">
+                    <summary>How do I practice for an interview?</summary>
+                    <p>Open interview practice, choose a question and start the timer. Your AI coach gives feedback
+                        on each answer, and your past chats are saved in the history list.</p>
+                </details>
 
-                        <label for="feedback-name">Name</label>
-                        <input type="text" id="feedback-name" name="name" autocomplete="name">
+                <details class="faq-item">
+                    <summary>Something isn't working. What should I do?</summary>
+                    <p>Refresh the page first. If the problem continues, send us feedback below and choose Report a
+                        problem so we can look into it.</p>
+                </details>
+            </section>
 
-                        <label for="feedback-email">Email Address</label>
-                        <input type="email" id="feedback-email" name="email" autocomplete="email">
+            <!-- Feedback form -->
+            <section class="help-block" id="feedback" aria-labelledby="feedback-heading">
+                <h2 id="feedback-heading">Send us feedback</h2>
+                <p class="help-intro">Tell us about your experience or let us know if you ran into a problem.
+                    Fields marked with * are required.</p>
 
-                        <label for="feedback-type">Feedback Type</label>
+                <form class="card help-form" id="feedbackForm" action="#" method="post">
+
+                    <div class="two-col">
+                        <div class="field">
+                            <label for="feedback-name">Name</label>
+                            <input type="text" id="feedback-name" name="name" autocomplete="name">
+                        </div>
+                        <div class="field">
+                            <label for="feedback-email">Email address</label>
+                            <input type="email" id="feedback-email" name="email" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="feedback-type">Feedback type *</label>
                         <select id="feedback-type" name="feedback-type" required>
                             <option value="">Select an option</option>
                             <option value="question">Question</option>
                             <option value="suggestion">Suggestion</option>
-                            <option value="bug">Report a Problem</option>
-                            <option value="compliment">Positive Feedback</option>
+                            <option value="bug">Report a problem</option>
+                            <option value="compliment">Positive feedback</option>
                             <option value="other">Other</option>
                         </select>
+                    </div>
 
-                        <label for="feedback-message">Your Feedback</label>
+                    <div class="field">
+                        <label for="feedback-message">Your feedback *</label>
                         <textarea id="feedback-message" name="feedback-message" rows="7"
                             placeholder="Tell us what you think..." required></textarea>
+                    </div>
 
-                    </fieldset>
+                    <div class="controls">
+                        <button type="submit" class="btn">Send feedback</button>
+                        <button type="reset" class="btn alt">Clear form</button>
+                    </div>
 
-                    <button type="submit">Submit Feedback</button>
-                    <button type="reset">Clear Form</button>
-
+                    <p class="form-status" id="feedbackStatus" role="status" aria-live="polite" hidden></p>
                 </form>
             </section>
 
-            <section aria-labelledby="contact-heading">
-                <h2 id="contact-heading">Need More Help?</h2>
-
-                <p>
-                    If you cannot find the answer you are looking for,
-                    contact the CareerConnect support team.
-                </p>
-
+            <!-- Contact -->
+            <section class="help-block" id="contact" aria-labelledby="contact-heading">
+                <div class="card contact-card">
+                    <h2 id="contact-heading">Need more help?</h2>
+                    <p>If you can't find the answer you are looking for, contact the Hire Higher support team.</p>
+                    <a class="btn alt" href="mailto:support@example.com">Email support</a>
+                </div>
             </section>
 
         </main>
@@ -79,6 +140,19 @@
         <div id="footer-placeholder"></div>
     </div>
 
+    <script>
+        // Confirms submission on the page. Replace with your real submit logic (e.g. Firebase) when ready.
+        document.getElementById("feedbackForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var status = document.getElementById("feedbackStatus");
+            status.textContent = "Thanks! Your feedback was sent.";
+            status.hidden = false;
+            this.reset();
+        });
+        document.getElementById("feedbackForm").addEventListener("reset", function () {
+            document.getElementById("feedbackStatus").hidden = true;
+        });
+    </script>
 
 </body>
 

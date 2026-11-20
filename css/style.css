@@ -2003,3 +2003,116 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   HELP PAGE
+========================================= */
+
+.help-block {
+    display: block;
+    max-width: 800px;
+    text-align: left;
+    scroll-margin-top: 1rem;
+}
+
+.help-block > h2 {
+    margin: 0 0 .5rem;
+    font-size: 1.75rem;
+    color: var(--border-top-color);
+}
+
+[data-theme="dark"] .help-block > h2,
+[data-theme="grape"] .help-block > h2,
+[data-theme="forest"] .help-block > h2,
+[data-theme="neon"] .help-block > h2 {
+    color: var(--primary-color);
+}
+
+.help-intro {
+    margin: 0 0 1.25rem;
+}
+
+/* FAQ accordion */
+.faq-item {
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-radius: 16px;
+    margin-bottom: .75rem;
+    transition: border-color .15s;
+}
+
+.faq-item[open],
+.faq-item:hover {
+    border-color: var(--primary-color);
+}
+
+.faq-item summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    font-weight: 800;
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    flex: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--primary-color);
+}
+
+.faq-item[open] summary::after {
+    content: "\2212";
+}
+
+.faq-item p {
+    margin: 0;
+    padding: 0 1.25rem 1.25rem;
+}
+
+/* Feedback form card */
+.help-form {
+    padding: 2rem;
+}
+
+.help-form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.help-form .controls {
+    margin-top: 1.5rem;
+}
+
+.form-status {
+    margin: 1rem 0 0;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* Contact card */
+.contact-card {
+    text-align: center;
+}
+
+.contact-card h2 {
+    margin: 0 0 .5rem;
+}
+
+.contact-card p {
+    margin: 0 0 1.25rem;
+}
+
+@media (max-width: 480px) {
+    .help-form {
+        padding: 1.25rem;
+    }
+}
