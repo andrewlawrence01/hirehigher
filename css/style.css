@@ -1998,16 +1998,8 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     .about-page > .about-section:nth-child(2) ul {
         grid-template-columns: 1fr;
     }
-<<<<<<< HEAD
 
     .team-grid {
         grid-template-columns: 1fr;
     }
-=======
-}
-
-
-[hidden] {
-    display: none !important;
->>>>>>> b37d0f367e5caa733713740b8a77e4d4763917aa
 }
