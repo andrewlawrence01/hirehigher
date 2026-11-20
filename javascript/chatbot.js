@@ -1,3 +1,4 @@
+console.log("chatbot.js v2 loaded");
 const log = document.getElementById("chatLog");
 const input = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
