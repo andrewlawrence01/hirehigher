@@ -22,6 +22,7 @@
                 <h2>Build your resume</h2>
                 <p>Pick a resume type, fill in the form, and watch your resume update. Your work saves automatically in this browser.</p>
             </div>
+
             <div class="tool">
                 <form class="card" id="resumeForm" onsubmit="return false">
 
@@ -41,25 +42,44 @@
                     <div class="group">
                         <h3>About you</h3>
                         <div class="two-col">
-                            <div class="field"><label for="name">Full name</label><input type="text" id="name"
-                                    placeholder="Jordan Lee"></div>
-                            <div class="field"><label for="email">Email</label><input type="email" id="email"
-                                    placeholder="jordan@example.com"></div>
-                            <div class="field"><label for="phone">Phone</label><input type="tel" id="phone"
-                                    placeholder="555-123-4567"></div>
-                            <div class="field"><label for="location">City, State</label><input type="text" id="location"
-                                    placeholder="Rexburg, ID"></div>
+                            <div class="field">
+                                <label for="name">Full name</label>
+                                <input type="text" id="name" placeholder="Jordan Lee">
+                            </div>
+
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="jordan@example.com">
+                            </div>
+
+                            <div class="field">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" placeholder="555-123-4567">
+                            </div>
+
+                            <div class="field">
+                                <label for="location">City, State</label>
+                                <input type="text" id="location" placeholder="Rexburg, ID">
+                            </div>
                         </div>
-                        <div class="field"><label for="link">Website or LinkedIn (optional)</label><input type="text"
-                                id="link" placeholder="linkedin.com/in/jordanlee"></div>
-                        <div class="field"><label for="summary">Summary</label><textarea id="summary" rows="3"
+
+                        <div class="field">
+                            <label for="link">Website or LinkedIn (optional)</label>
+                            <input type="text" id="link" placeholder="linkedin.com/in/jordanlee">
+                        </div>
+
+                        <div class="field">
+                            <label for="summary">Summary</label>
+                            <textarea id="summary" rows="3"
                                 placeholder="Reliable team player with two years of customer service experience."></textarea>
                         </div>
                     </div>
 
                     <div class="group" id="group-skills">
                         <h3>Skills</h3>
-                        <div class="field"><label for="skills">Your skills</label><textarea id="skills" rows="2"
+                        <div class="field">
+                            <label for="skills">Your skills</label>
+                            <textarea id="skills" rows="2"
                                 placeholder="Communication, Excel, Teamwork"></textarea>
                             <p class="hint">Separate skills with commas.</p>
                         </div>
@@ -86,6 +106,7 @@
                     <div class="group">
                         <h3>Sections</h3>
                         <p class="hint">Uncheck anything you want left off your resume.</p>
+
                         <label><input type="checkbox" id="show-summary" checked> Summary</label>
                         <label><input type="checkbox" id="show-skills" checked> Skills</label>
                         <label><input type="checkbox" id="show-jobs" checked> Experience</label>
@@ -97,13 +118,7 @@
                         <h3>Look</h3>
                         <div class="field">
                             <label for="accent">Accent color</label>
-                            <select id="accent">
-                                <option value="navy">Navy</option>
-                                <option value="forest">Forest green</option>
-                                <option value="plum">Plum</option>
-                                <option value="rose">Rose</option>
-                                <option value="slate">Charcoal</option>
-                            </select>
+                            <input type="color" id="accent" value="#0e3a60">
                         </div>
                     </div>
 
@@ -111,11 +126,14 @@
                         <button type="button" class="btn" id="printBtn">Print or save as PDF</button>
                         <button type="button" class="btn alt" id="clearBtn">Clear form</button>
                     </div>
+
                     <p class="hint">In the print window, choose "Save as PDF" as the destination.</p>
                 </form>
+
                 <div id="preview" role="region" aria-label="Resume preview"></div>
             </div>
         </main>
+
         <div id="footer-placeholder"></div>
     </div>
 </body>
