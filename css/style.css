@@ -2658,3 +2658,43 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
         padding: 1.35rem;
     }
 }
+/* Custom accent color picker */
+#accent {
+    width: 75px;
+    height: 45px;
+    padding: 4px;
+    border: 2px solid var(--border-top-color);
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    vertical-align: middle;
+}
+
+/* Chrome, Edge, Safari */
+#accent::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+#accent::-webkit-color-swatch {
+    border: none;
+    border-radius: 7px;
+}
+
+/* Firefox */
+#accent::-moz-color-swatch {
+    border: none;
+    border-radius: 7px;
+}
+
+/* Hover effect */
+#accent:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px var(--secondary-color)
+}
+
+/* Keyboard accessibility */
+#accent:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 4px;
+}

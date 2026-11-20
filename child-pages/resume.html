@@ -20,7 +20,8 @@
         <main>
             <div class="welcome">
                 <h2>Build your resume</h2>
-                <p>Pick a resume type, fill in the form, and watch your resume update. Your work saves automatically in this browser.</p>
+                <p>Pick a resume type, fill in the form, and watch your resume update. Your work saves automatically in
+                    this browser.</p>
             </div>
 
             <div class="tool">
@@ -36,6 +37,14 @@
                                 <option value="changer">Career changer</option>
                             </select>
                             <p class="hint" id="presetHint"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="group">
+                        <h3>Look</h3>
+                        <div class="field">
+                            <label for="accent">Accent color</label>
+                            <input type="color" id="accent" value="#0e3a60">
                         </div>
                     </div>
 
@@ -79,8 +88,7 @@
                         <h3>Skills</h3>
                         <div class="field">
                             <label for="skills">Your skills</label>
-                            <textarea id="skills" rows="2"
-                                placeholder="Communication, Excel, Teamwork"></textarea>
+                            <textarea id="skills" rows="2" placeholder="Communication, Excel, Teamwork"></textarea>
                             <p class="hint">Separate skills with commas.</p>
                         </div>
                     </div>
@@ -114,13 +122,7 @@
                         <label><input type="checkbox" id="show-projects" checked> Projects</label>
                     </div>
 
-                    <div class="group">
-                        <h3>Look</h3>
-                        <div class="field">
-                            <label for="accent">Accent color</label>
-                            <input type="color" id="accent" value="#0e3a60">
-                        </div>
-                    </div>
+
 
                     <div class="controls">
                         <button type="button" class="btn" id="printBtn">Print or save as PDF</button>
