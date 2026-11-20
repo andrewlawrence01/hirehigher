@@ -19,6 +19,9 @@
         .msg.you { align-self: flex-end; background: rgba(80, 130, 255, 0.25); }
         .chat-input { display: flex; gap: 8px; margin-top: 12px; }
         .chat-input textarea { flex: 1; }
+        .chat-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+        .chat-row .btn { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .chat-row input[type="checkbox"] { width: 18px; height: 18px; flex: none; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -33,6 +36,11 @@
             <div class="card history-card">
                 <h2>Past chats</h2>
                 <button type="button" class="btn" id="newChatBtn">+ New chat</button>
+                <button type="button" class="btn" id="selectBtn">Select chats</button>
+                <div id="selectActions" style="display:none">
+                    <button type="button" class="btn" id="deleteSelectedBtn">Delete selected (0)</button>
+                    <button type="button" class="btn" id="cancelSelectBtn">Cancel</button>
+                </div>
                 <div id="chatList"></div>
             </div>
 
