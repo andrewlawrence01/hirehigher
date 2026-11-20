@@ -3,7 +3,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js";
-import { getFirestore, collection, addDoc, query, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, orderBy, getDocs, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 // Firebase configuration
 const firebaseConfig = {
@@ -149,6 +149,22 @@ async function sendMessage(text) {
     return "The coach is busy right now. Please try again in a few minutes.";
   }
 }
+
+window.deleteChat = async (id) => {
+  // 1. delete the saved messages from Firestore
+  try {
+    const snap = await getDocs(collection(db, "chats", id, "messages"));
+    await Promise.all(snap.docs.map(d => deleteDoc(d.ref)));
+  } catch (e) {
+    console.error("Delete failed", e);
+  }
+
+  // 2. remove it from this browser's list
+  try {
+    const list = getIndex().filter(c => c.id !== id);
+    localStorage.setItem("chatIndex", JSON.stringify(list));
+  } catch (e) {}
+};
 
 // ---------- PAST CHATS ----------
 window.getPastChats = getIndex;
