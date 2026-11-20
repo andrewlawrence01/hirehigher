@@ -841,6 +841,9 @@ main>form:has(input[name="theme"]) button[type="submit"]:active {
     min-width: 0;
 }
 
+.chat-row { display: flex; gap: 4px; margin-top: 6px; }
+.chat-row .btn:first-child { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 #chatList {
     display: flex;
     flex-direction: column;
