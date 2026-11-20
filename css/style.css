@@ -1594,7 +1594,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     border: 3px solid var(--border-top-color);
     border-radius: 8px;
     background: var(--background-color);
-    display: grid;
+    display: inline-grid;
     place-content: center;
     cursor: pointer;
     transition: background .15s;
