@@ -94,14 +94,45 @@ function refreshChatList() {
     if (!list) return;
     list.innerHTML = "";
     for (const c of window.getPastChats?.() || []) {
+        const row = document.createElement("div");
+        row.className = "chat-row";
+
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "btn small";
         btn.textContent = c.title || "Untitled";
         if (c.id === activeChat) btn.classList.add("active");
         btn.onclick = () => openPastChat(c.id);
-        list.appendChild(btn);
+
+        const del = document.createElement("button");
+        del.type = "button";
+        del.className = "btn small delete-chat";
+        del.textContent = "🗑";
+        del.title = "Delete this chat";
+        del.setAttribute("aria-label", "Delete chat: " + (c.title || "Untitled"));
+        del.onclick = () => handleDelete(c.id);
+
+        row.append(btn, del);
+        list.appendChild(row);
     }
+}
+
+async function handleDelete(id) {
+    if (!confirm("Delete this chat? This can't be undone.")) return;
+    if (typeof window.deleteChat !== "function") {
+        alert("Deleting isn't available yet.");
+        return;
+    }
+    await window.deleteChat(id);
+
+    // if you deleted the chat you were viewing, reset to a fresh one
+    if (id === activeChat) {
+        window.newChat();
+        activeChat = null;
+        log.innerHTML = "";
+        addMessage("Hi! I'm your interview coach. What job are you interviewing for?", "coach");
+    }
+    refreshChatList();
 }
 
 document.getElementById("newChatBtn").addEventListener("click", () => {
