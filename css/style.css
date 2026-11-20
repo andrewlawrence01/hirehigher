@@ -2116,3 +2116,69 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
         padding: 1.25rem;
     }
 }
+
+/* =========================================
+   PRIVACY PAGE
+========================================= */
+
+/* Content cards (overrides the global centered flex <section>) */
+.privacy-card {
+    display: block;
+    max-width: 800px;
+    padding: 1.75rem 2rem;
+    text-align: left;
+    background: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-left: 8px solid var(--primary-color);
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(14, 58, 96, .15);
+}
+
+.privacy-card h2 {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    color: var(--border-top-color);
+}
+
+[data-theme="dark"] .privacy-card h2,
+[data-theme="grape"] .privacy-card h2,
+[data-theme="forest"] .privacy-card h2,
+[data-theme="neon"] .privacy-card h2 {
+    color: var(--primary-color);
+}
+
+.privacy-card h3 {
+    margin: 1rem 0 .5rem;
+    font-size: 1rem;
+}
+
+.privacy-card h3:first-of-type {
+    margin-top: 0;
+}
+
+.privacy-card p {
+    margin: 0 0 .85rem;
+}
+
+.privacy-card p:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-card .chips {
+    margin: 0 0 .5rem;
+}
+
+.privacy-contact {
+    text-align: center;
+}
+
+.privacy-contact .btn {
+    margin-top: 1.25rem;
+}
+
+@media (max-width: 480px) {
+    .privacy-card {
+        padding: 1.25rem;
+        border-left-width: 6px;
+    }
+}

@@ -17,65 +17,77 @@
 
     <div id="wrapper">
 
-    <div id="header-placeholder"></div>
+        <div id="header-placeholder"></div>
 
-    <main class="privacy-page">
+        <main class="privacy-page">
 
-        <section>
-            <h1>Privacy &amp; Security</h1>
-            <p>
-                Hire Higher is committed to protecting the information
-                users provide when using our website.
-            </p>
-        </section>
+            <!-- Intro -->
+            <div class="welcome">
+                <h1>Privacy &amp; security</h1>
+                <p>Hire Higher is committed to protecting the information you provide when using our website.</p>
+            </div>
 
-        <section>
-            <h2>Information We Collect</h2>
-            <p>
-                When creating an account, users may provide their
-                first name, last name, and email address.
-            </p>
-            <p>
-                Users may also provide profile information, including
-                their full name, location, biography, and profile photo.
-            </p>
-        </section>
+            <!-- At a glance -->
+            <section aria-label="Privacy at a glance">
+                <article>
+                    <h3>What we collect</h3>
+                    <p>Basic account details and the profile information you choose to add.</p>
+                </article>
+                <article>
+                    <h3>How you sign in</h3>
+                    <p>Sign-in and passwords are handled by Supabase Authentication.</p>
+                </article>
+                <article>
+                    <h3>Where it's stored</h3>
+                    <p>Account data and profile photos are stored with Supabase services.</p>
+                </article>
+            </section>
 
-        <section>
-            <h2>Account Security</h2>
-            <p>
-                Hire Higher uses Supabase Authentication to manage
-                user sign-in and account authentication.
-            </p>
-            <p>
-                Password authentication is handled through Supabase.
-                Users should never share their passwords with other people.
-            </p>
-        </section>
+            <!-- Information we collect -->
+            <section class="privacy-card" aria-labelledby="collect-heading">
+                <h2 id="collect-heading">Information we collect</h2>
 
-        <section>
-            <h2>Data Storage</h2>
-            <p>
-                Account and profile information is stored using
-                Supabase services.
-            </p>
-            <p>
-                Profile photos are stored using Supabase Storage.
-            </p>
-        </section>
+                <h3>When you create an account</h3>
+                <ul class="chips">
+                    <li>First name</li>
+                    <li>Last name</li>
+                    <li>Email address</li>
+                </ul>
 
-        <section>
-            <h2>Questions About Privacy</h2>
-            <p>
-                If you have questions about the information you provide
-                to Hire Higher, please contact the website administrators.
-            </p>
-        </section>
+                <h3>When you build your profile</h3>
+                <ul class="chips">
+                    <li>Full name</li>
+                    <li>Location</li>
+                    <li>Biography</li>
+                    <li>Profile photo</li>
+                </ul>
+            </section>
 
-    </main>
+            <!-- Account security -->
+            <section class="privacy-card" aria-labelledby="security-heading">
+                <h2 id="security-heading">Account security</h2>
+                <p>Hire Higher uses Supabase Authentication to manage user sign-in and account authentication.</p>
+                <p>Password authentication is handled through Supabase. Never share your password with anyone else.</p>
+            </section>
 
+            <!-- Data storage -->
+            <section class="privacy-card" aria-labelledby="storage-heading">
+                <h2 id="storage-heading">Data storage</h2>
+                <p>Account and profile information is stored using Supabase services.</p>
+                <p>Profile photos are stored using Supabase Storage.</p>
+            </section>
 
-    <div id="footer-placeholder"></div>
+            <!-- Questions -->
+            <section class="privacy-card privacy-contact" aria-labelledby="questions-heading">
+                <h2 id="questions-heading">Questions about privacy</h2>
+                <p>If you have questions about the information you provide to Hire Higher, please contact the website
+                    administrators.</p>
+                <a class="btn alt" href="help.html#contact">Contact support</a>
+            </section>
+
+        </main>
+
+        <div id="footer-placeholder"></div>
 
     </div>
 
