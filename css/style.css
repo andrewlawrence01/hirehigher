@@ -36,24 +36,20 @@ a {
     outline-offset: 2px;
 }
 
-[data-theme="dark"] .logo,
-[data-theme="forest"] .logo,
-[data-theme="grape"] .logo,
-[data-theme="red-black"] .logo,
-[data-theme="neon"] .logo {
-    content: url("/images/DarkMode.png");
-}
 
 .logo {
     width: 76px;
     height: 76px;
     object-fit: contain;
+    content: url("../images/HireHigher.png");
+
 }
 
 [data-theme="dark"] .logo,
 [data-theme="grape"] .logo,
 [data-theme="forest"] .logo,
-[data-theme="neon"] .logo {
+[data-theme="neon"] .logo,
+[data-theme="red-black"] .logo {
     content: url("../images/DarkMode.png");
 }
 
@@ -392,7 +388,8 @@ select:focus {
     border: 1px solid rgba(0, 0, 0, .08);
     border-radius: 4px;
     padding: 2.25rem;
-    aspect-ratio: 8.5 / 11; /* US Letter proportions, so it looks like a sheet of paper */
+    aspect-ratio: 8.5 / 11;
+    /* US Letter proportions, so it looks like a sheet of paper */
     font-size: .95rem;
     line-height: 1.45;
     text-align: left;
@@ -405,7 +402,7 @@ select:focus {
 }
 
 /* "Your resume preview will appear here." before anything is typed */
-#preview > p:only-child {
+#preview>p:only-child {
     margin: 0;
     padding-top: 35%;
     text-align: center;
@@ -415,6 +412,7 @@ select:focus {
 
 /* On dark themes the paper sits on a dark page, so use a deeper shadow */
 @media screen {
+
     [data-theme="dark"] #preview,
     [data-theme="forest"] #preview,
     [data-theme="grape"] #preview,
@@ -542,7 +540,7 @@ select:focus {
         display: block;
     }
 
-        #preview {
+    #preview {
         position: static !important;
         max-height: none !important;
         overflow: visible !important;
@@ -579,7 +577,7 @@ main>form:has(input[name="theme"]) {
 
 /* Fieldset + legend */
 /* 1. Turn the fieldset into a wrapping flex container */
-main > form:has(input[name="theme"]) fieldset {
+main>form:has(input[name="theme"]) fieldset {
     display: flex;
     flex-direction: column;
     border: none;
@@ -597,7 +595,7 @@ main > form:has(input[name="theme"]) fieldset {
 }
 
 /* 2. Style the theme option cards to stack on mobile, 2-column on desktop */
-main > form:has(input[name="theme"]) label {
+main>form:has(input[name="theme"]) label {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -609,7 +607,7 @@ main > form:has(input[name="theme"]) label {
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    
+
     /* Mobile: full width */
     flex: 1 1 100%;
     box-sizing: border-box;
@@ -618,8 +616,9 @@ main > form:has(input[name="theme"]) label {
 
 /* Desktop layout: Switch to 2 columns when screen is 550px or wider */
 @media (min-width: 700px) {
-    main > form:has(input[name="theme"]) label {
-        flex: 0 1 calc(50% - 0.5rem); /* Changed flex-grow from 1 to 0 */
+    main>form:has(input[name="theme"]) label {
+        flex: 0 1 calc(50% - 0.5rem);
+        /* Changed flex-grow from 1 to 0 */
     }
 }
 
@@ -864,8 +863,19 @@ main>form:has(input[name="theme"]) button[type="submit"]:active {
     min-width: 0;
 }
 
-.chat-row { display: flex; gap: 4px; margin-top: 6px; }
-.chat-row .btn:first-child { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chat-row {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.chat-row .btn:first-child {
+    flex: 1;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 #chatList {
     display: flex;
@@ -883,16 +893,49 @@ main>form:has(input[name="theme"]) button[type="submit"]:active {
     font-weight: bold;
 }
 
-.chat-wrap { display: flex; gap: 16px; align-items: flex-start; }
-.chat-sidebar { width: 200px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
-.chat-main { flex: 1; min-width: 0; }
-#chatList { display: flex; flex-direction: column; gap: 6px; max-height: 420px; overflow-y: auto; }
-#chatList button { text-align: left; }
-#chatList button.active { font-weight: bold; }
+.chat-wrap {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.chat-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-main {
+    flex: 1;
+    min-width: 0;
+}
+
+#chatList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+#chatList button {
+    text-align: left;
+}
+
+#chatList button.active {
+    font-weight: bold;
+}
 
 @media (max-width: 700px) {
-    .chat-wrap { flex-direction: column; }
-    .chat-sidebar { width: 100%; }
+    .chat-wrap {
+        flex-direction: column;
+    }
+
+    .chat-sidebar {
+        width: 100%;
+    }
 }
 
 /* Chat layout: history card beside the chat card */
@@ -1734,7 +1777,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
 }
 
 /* Shared theme-aware section styling */
-.about-page > section {
+.about-page>section {
     width: 100%;
     max-width: 1160px;
     margin: 0;
@@ -1748,8 +1791,8 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     border-radius: 30px;
 
     transition: background-color 0.2s ease,
-                color 0.2s ease,
-                border-color 0.2s ease;
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 /* Shared text styling */
@@ -1775,7 +1818,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
    OUR MISSION
 ========================================= */
 
-.about-page > .about-section:first-child {
+.about-page>.about-section:first-child {
     display: block;
     max-width: 1160px;
     padding: 35px 0;
@@ -1787,11 +1830,11 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     text-align: center;
 }
 
-.about-page > .about-section:first-child h2 {
+.about-page>.about-section:first-child h2 {
     margin-bottom: 60px;
 }
 
-.about-page > .about-section:first-child p {
+.about-page>.about-section:first-child p {
     max-width: 900px;
     margin: 0 auto;
     padding: 0;
@@ -1808,7 +1851,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
    WHAT WE OFFER
 ========================================= */
 
-.about-page > .about-section:nth-child(2) {
+.about-page>.about-section:nth-child(2) {
     display: block;
     max-width: 1100px;
     margin-left: auto;
@@ -1817,11 +1860,11 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     text-align: center;
 }
 
-.about-page > .about-section:nth-child(2) h2 {
+.about-page>.about-section:nth-child(2) h2 {
     margin-bottom: 25px;
 }
 
-.about-page > .about-section:nth-child(2) ul {
+.about-page>.about-section:nth-child(2) ul {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
@@ -1834,7 +1877,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     list-style: none;
 }
 
-.about-page > .about-section:nth-child(2) li {
+.about-page>.about-section:nth-child(2) li {
     padding: 30px;
     box-sizing: border-box;
 
@@ -1847,15 +1890,15 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     line-height: 1.5;
 
     transition: background-color 0.2s ease,
-                color 0.2s ease,
-                border-color 0.2s ease;
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 /* =========================================
    MEET OUR TEAM
 ========================================= */
 
-.about-page > .team-section {
+.about-page>.team-section {
     display: block;
     max-width: 1160px;
     text-align: center;
@@ -1887,8 +1930,8 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     text-align: left;
 
     transition: border-color 0.2s ease,
-                background-color 0.2s ease,
-                transform 0.2s ease;
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .team-member:hover {
@@ -1931,7 +1974,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
    CONTACT US
 ========================================= */
 
-.about-page > .about-section:last-child {
+.about-page>.about-section:last-child {
     display: block;
     max-width: 750px;
     margin-left: auto;
@@ -1940,11 +1983,11 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     text-align: center;
 }
 
-.about-page > .about-section:last-child h2 {
+.about-page>.about-section:last-child h2 {
     margin-bottom: 20px;
 }
 
-.about-page > .about-section:last-child p {
+.about-page>.about-section:last-child p {
     margin-bottom: 20px;
 }
 
@@ -1974,7 +2017,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
         gap: 22px;
     }
 
-    .about-page > section {
+    .about-page>section {
         padding: 28px 24px;
         border-radius: 22px;
     }
@@ -1983,19 +2026,19 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
         font-size: 1.6rem;
     }
 
-    .about-page > .about-section:first-child {
+    .about-page>.about-section:first-child {
         padding: 25px 0;
     }
 
-    .about-page > .about-section:first-child h2 {
+    .about-page>.about-section:first-child h2 {
         margin-bottom: 30px;
     }
 
-    .about-page > .about-section:first-child p {
+    .about-page>.about-section:first-child p {
         padding: 25px 20px;
     }
 
-    .about-page > .about-section:nth-child(2) ul {
+    .about-page>.about-section:nth-child(2) ul {
         grid-template-columns: 1fr;
     }
 
@@ -2015,16 +2058,16 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     scroll-margin-top: 1rem;
 }
 
-.help-block > h2 {
+.help-block>h2 {
     margin: 0 0 .5rem;
     font-size: 1.75rem;
     color: var(--border-top-color);
 }
 
-[data-theme="dark"] .help-block > h2,
-[data-theme="grape"] .help-block > h2,
-[data-theme="forest"] .help-block > h2,
-[data-theme="neon"] .help-block > h2 {
+[data-theme="dark"] .help-block>h2,
+[data-theme="grape"] .help-block>h2,
+[data-theme="forest"] .help-block>h2,
+[data-theme="neon"] .help-block>h2 {
     color: var(--primary-color);
 }
 
@@ -2204,11 +2247,11 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     color: var(--primary-color);
 }
 
-.privacy-card > p {
+.privacy-card>p {
     margin: 0 0 .85rem;
 }
 
-.privacy-card > p:last-child {
+.privacy-card>p:last-child {
     margin-bottom: 0;
 }
 
@@ -2340,11 +2383,9 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     left: 0;
     width: 100%;
     height: 7px;
-    background: linear-gradient(
-        90deg,
-        var(--primary-color),
-        var(--secondary-color)
-    );
+    background: linear-gradient(90deg,
+            var(--primary-color),
+            var(--secondary-color));
 }
 
 .pref-card:hover {
@@ -2370,11 +2411,9 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
     width: 48px;
     height: 48px;
     border-radius: 16px;
-    background: color-mix(
-        in srgb,
-        var(--secondary-color) 25%,
-        transparent
-    );
+    background: color-mix(in srgb,
+            var(--secondary-color) 25%,
+            transparent);
     font-size: 1.5rem;
 }
 
@@ -2411,11 +2450,9 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
 .pref-card input[type="text"]:focus,
 .pref-card select:focus {
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 4px color-mix(
-        in srgb,
-        var(--secondary-color) 22%,
-        transparent
-    );
+    box-shadow: 0 0 0 4px color-mix(in srgb,
+            var(--secondary-color) 22%,
+            transparent);
     transform: translateY(-1px);
 }
 
@@ -2439,11 +2476,9 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
 
 .pref-option:hover {
     border-color: var(--primary-color);
-    background: color-mix(
-        in srgb,
-        var(--primary-color) 8%,
-        transparent
-    );
+    background: color-mix(in srgb,
+            var(--primary-color) 8%,
+            transparent);
     transform: translateX(3px);
 }
 
@@ -2493,11 +2528,9 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
 
 .pref-option:has(input:checked) {
     border-color: var(--primary-color);
-    background: color-mix(
-        in srgb,
-        var(--primary-color) 10%,
-        transparent
-    );
+    background: color-mix(in srgb,
+            var(--primary-color) 10%,
+            transparent);
 }
 
 /* Save button */
@@ -2525,6 +2558,7 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
 
 /* Mobile layout */
 @media (max-width: 700px) {
+
     .pref-form,
     .two-col {
         grid-template-columns: 1fr;
@@ -2540,4 +2574,3 @@ html[data-theme="red-black"] .auth-page .signin-prompt p {
         padding: 1.35rem;
     }
 }
-
